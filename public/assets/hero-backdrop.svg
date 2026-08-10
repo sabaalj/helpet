@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1440.5" height="808.5" viewBox="0 0 1440.5 808.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mask group">
+<mask id="mask0_0_3627" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1441" height="809">
+<path id="Vector 4" d="M877 774.5C660.2 721.3 164.5 744 0 808.5V0H1440.5L1440 774.5C1361.17 800.833 1093.8 827.7 877 774.5Z" fill="#F2E2FF"/>
+</mask>
+<g mask="url(#mask0_0_3627)">
+<path id="Ellipse 30" d="M1422 620C1422 838.152 1245.15 1015 1027 1015C808.848 1015 632 838.152 632 620C632 401.848 808.848 225 1027 225C1245.15 225 1422 401.848 1422 620ZM671.5 620C671.5 816.337 830.663 975.5 1027 975.5C1223.34 975.5 1382.5 816.337 1382.5 620C1382.5 423.663 1223.34 264.5 1027 264.5C830.663 264.5 671.5 423.663 671.5 620Z" fill="#E5C4FF"/>
+</g>
+</g>
+</svg>

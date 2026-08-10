@@ -1,0 +1,1103 @@
+const imgRectangle171Stroke = "https://www.figma.com/api/mcp/asset/2d070591-7757-4955-9c88-02f2fb09afaa.png";
+const imgRectangle169 = "https://www.figma.com/api/mcp/asset/00255eed-14da-4931-bd9f-b7040839d51f.png";
+const imgRectangle170 = "https://www.figma.com/api/mcp/asset/e86e4d97-9f02-4285-9920-99f4919f7e3d.png";
+const imgVector9 = "https://www.figma.com/api/mcp/asset/5a46dc4e-61d7-49ed-80bf-b61b78c9b18c.svg";
+const imgUnion = "https://www.figma.com/api/mcp/asset/1df78ac6-bcb3-4209-ac59-87a8a0bca93d.svg";
+const imgUnion1 = "https://www.figma.com/api/mcp/asset/6452a2a0-49f1-49cf-b16b-3ed40af5ba3e.svg";
+const imgGroup27 = "https://www.figma.com/api/mcp/asset/5c4a6698-e7c4-4b3f-a0bc-c41ba5af891a.svg";
+const imgEnvelope = "https://www.figma.com/api/mcp/asset/8533ed3f-759d-4295-9064-5ee272268db9.svg";
+const imgVector = "https://www.figma.com/api/mcp/asset/8465e31b-7ccb-4e06-9c31-1bb74bed7e6e.svg";
+const imgVector1 = "https://www.figma.com/api/mcp/asset/7c9219ce-4dff-4c79-a2b1-a14f1aaad74a.svg";
+const imgVector2 = "https://www.figma.com/api/mcp/asset/6fc28758-c2c2-43fa-81d0-1e917e758811.svg";
+const imgVector3 = "https://www.figma.com/api/mcp/asset/6655f3ba-29c9-41cf-8a94-4ec0b871c9d4.svg";
+const imgVector4 = "https://www.figma.com/api/mcp/asset/cbb0d144-88d2-4c05-859d-da2c36638c8f.svg";
+const imgInstagramLogo = "https://www.figma.com/api/mcp/asset/c53030a8-7495-4f73-93b3-7d2deff409eb.svg";
+const imgVector5 = "https://www.figma.com/api/mcp/asset/8e470db9-9c79-4b33-b045-7ca30e7fd0ee.svg";
+const imgVector6 = "https://www.figma.com/api/mcp/asset/f0169d38-d8ac-472c-a029-3d6e11c8811d.svg";
+const imgVector7 = "https://www.figma.com/api/mcp/asset/8796a054-3459-4657-82c9-f2d67984f15e.svg";
+const imgRectangle169Stroke = "https://www.figma.com/api/mcp/asset/9e16a3db-dc2e-4cae-b5b5-9ab02c13f859.svg";
+const imgImage8 = "https://www.figma.com/api/mcp/asset/da91ade6-845b-49e6-92c5-5fbe931fbacf.png";
+const imgUnion2 = "https://www.figma.com/api/mcp/asset/de4ce0cd-7c0e-41e0-908e-c4c4be5695bc.svg";
+const imgEllipse13 = "https://www.figma.com/api/mcp/asset/3a0b9c37-a79d-4bb1-a5e3-588716105fb2.svg";
+const imgEllipse12 = "https://www.figma.com/api/mcp/asset/53658d62-7d7d-4f3b-825c-4512460d51e4.svg";
+const imgStroke = "https://www.figma.com/api/mcp/asset/31090d65-57a2-4387-b0c2-ab83e08b5719.png";
+const imgImage2 = "https://www.figma.com/api/mcp/asset/70676aa4-85b6-450a-a21b-5e3ed193b1bf.png";
+const imgImage4 = "https://www.figma.com/api/mcp/asset/40bda4b1-abc2-4648-8720-82cf8236dc95.png";
+const imgRectangle3 = "https://www.figma.com/api/mcp/asset/da34d543-0e1c-4d64-8254-fc67b97809b1.png";
+const imgRectangle4 = "https://www.figma.com/api/mcp/asset/88c3831a-8af5-40a7-a699-874a50cccea9.png";
+const imgImage5 = "https://www.figma.com/api/mcp/asset/47642fc6-75ec-497c-ab2a-fdd7af9ed571.png";
+const imgPngwingCom9 = "https://www.figma.com/api/mcp/asset/34ea4454-8a7a-42bf-ac0c-0db35849ffdc.png";
+const imgPngwingCom10 = "https://www.figma.com/api/mcp/asset/64129d3d-8a85-4317-8867-f23226fc8e8d.png";
+const imgPngwingCom4 = "https://www.figma.com/api/mcp/asset/046895e5-fbc2-4c71-80d1-0491e6a7a996.png";
+const imgImage6 = "https://www.figma.com/api/mcp/asset/6ee40d75-2010-40e8-b2f5-cb35fda3b68b.png";
+const imgImage7 = "https://www.figma.com/api/mcp/asset/5c5c6531-7e94-48f2-b607-4e0e61220334.png";
+const imgImage9 = "https://www.figma.com/api/mcp/asset/741f71aa-4949-42aa-85d2-28b561337f48.png";
+const imgImage10 = "https://www.figma.com/api/mcp/asset/a63d3ea0-c837-4110-be8b-669798674632.png";
+const imgImage12 = "https://www.figma.com/api/mcp/asset/4b586b77-8653-4d68-a570-a344f8d39c2e.png";
+const imgImage13 = "https://www.figma.com/api/mcp/asset/c4df4c26-fdb6-4783-8775-574d0b1ed474.png";
+const imgImage14 = "https://www.figma.com/api/mcp/asset/5510bc84-9069-4ce0-9ca9-30530c401df7.png";
+const imgImage15 = "https://www.figma.com/api/mcp/asset/40357568-7d10-4cc0-b398-1b75cbb4a342.png";
+const imgRectangle166 = "https://www.figma.com/api/mcp/asset/e75597c7-3777-4718-a823-1f77c048f092.png";
+const imgPngwingCom11 = "https://www.figma.com/api/mcp/asset/acb60356-bf9b-4e54-8932-c05662a26d97.png";
+const imgPngwingCom1 = "https://www.figma.com/api/mcp/asset/666fe63d-9d03-4ab9-8dcc-88f2e48e0155.png";
+const imgSubtract = "https://www.figma.com/api/mcp/asset/005871d3-46d5-403e-96a5-84bc965b7cd6.png";
+const imgPngwingCom12 = "https://www.figma.com/api/mcp/asset/57bdd2d3-7550-4f63-a527-97807ca3145a.png";
+const imgPngwingCom13 = "https://www.figma.com/api/mcp/asset/e68bc6f7-eca4-4423-912f-527f5d169106.png";
+const imgPngwingCom = "https://www.figma.com/api/mcp/asset/5b285975-4ef3-4962-8171-3e4b49f044fa.png";
+const imgPngwingCom2 = "https://www.figma.com/api/mcp/asset/ec8c2794-539f-4b4b-b149-eb58af1a9d2d.png";
+const imgPngwingCom3 = "https://www.figma.com/api/mcp/asset/51ea555e-d15d-4c8c-8589-11b7ffc93134.png";
+const imgPngwingCom5 = "https://www.figma.com/api/mcp/asset/c18bfddf-7074-4065-b9c1-2c9c04354c33.png";
+const imgPngwingCom6 = "https://www.figma.com/api/mcp/asset/c93b5752-b6cc-4d36-966a-944b95587988.png";
+const imgPngwingCom7 = "https://www.figma.com/api/mcp/asset/35fc43d8-8bc8-43e2-9d0b-f7d25590349e.png";
+const imgPngwingCom14 = "https://www.figma.com/api/mcp/asset/1072f8d3-4006-4ae6-96f4-e3916a593c76.png";
+const imgEllipse26 = "https://www.figma.com/api/mcp/asset/bd4bd9cf-e935-4640-96dc-ad59663e20b1.png";
+const imgVector8 = "https://www.figma.com/api/mcp/asset/5c565ab4-9cbb-4bd3-8b50-14708877486a.svg";
+const imgMaskGroup = "https://www.figma.com/api/mcp/asset/7688c6c9-a5da-46c9-a6a0-a113f3a04508.svg";
+const imgUnion3 = "https://www.figma.com/api/mcp/asset/a73b7e75-6f0f-42b6-ad26-1280c3a853e7.svg";
+const imgFill = "https://www.figma.com/api/mcp/asset/6aaf3ff2-8471-41cd-9696-21cd82d85678.svg";
+const imgImage1 = "https://www.figma.com/api/mcp/asset/b52fdf61-a500-4ca5-a522-43c239c22083.svg";
+const imgImage3 = "https://www.figma.com/api/mcp/asset/84048d87-cc06-4984-acb1-ac9cd0d4c6fc.svg";
+const imgStar1 = "https://www.figma.com/api/mcp/asset/ef38a1dd-be6a-4fb4-9079-41465a78a850.svg";
+const imgDog = "https://www.figma.com/api/mcp/asset/03422bb5-d4ba-45e8-b5be-b909bbb2f214.svg";
+const imgVector10 = "https://www.figma.com/api/mcp/asset/34d3f52c-9853-4c32-8a84-a642e2559fd0.svg";
+const imgVector11 = "https://www.figma.com/api/mcp/asset/0491498c-ee24-4d6a-9330-979203cd6334.svg";
+const imgVector12 = "https://www.figma.com/api/mcp/asset/1bb202b7-418a-40d6-9cd1-c266b4f61f3a.svg";
+const imgVector13 = "https://www.figma.com/api/mcp/asset/bfbd2a83-7e22-4419-8599-00362d6fabba.svg";
+const imgVector14 = "https://www.figma.com/api/mcp/asset/2de948a6-c94c-4b70-b3d5-ae55a102f0a8.svg";
+const imgVector15 = "https://www.figma.com/api/mcp/asset/4512bd0d-0865-41b8-aa57-5408c5afd820.svg";
+const imgVector16 = "https://www.figma.com/api/mcp/asset/aa5b3b05-474b-44f2-8056-a8c2d1bf116c.svg";
+const imgCat = "https://www.figma.com/api/mcp/asset/e9e08c28-21cd-4d04-aace-f3de6177ec69.svg";
+const imgVector17 = "https://www.figma.com/api/mcp/asset/39e6f28e-52f2-4f6e-9714-af2da0ec12b8.svg";
+const imgVector18 = "https://www.figma.com/api/mcp/asset/0c46efad-dca2-490d-a82f-e2d44087633a.svg";
+const imgVector19 = "https://www.figma.com/api/mcp/asset/a2775c93-f47e-4299-bac9-f95aafe2999a.svg";
+const imgVector20 = "https://www.figma.com/api/mcp/asset/d7a0882a-2a96-408a-9e9d-5c4220ec0d0b.svg";
+const imgVector21 = "https://www.figma.com/api/mcp/asset/ac4f5df0-4c90-41f1-952f-22e5982628b4.svg";
+const imgVector22 = "https://www.figma.com/api/mcp/asset/b3bcd5cf-c3dc-4f9f-9f4b-101d84bc4cf5.svg";
+const imgPngwingCom8 = "https://www.figma.com/api/mcp/asset/2cb50622-fefa-4b10-a8f2-3a3e3cb7d616.svg";
+const imgMaskGroup1 = "https://www.figma.com/api/mcp/asset/0b562cc2-dd8c-4c23-a9d8-01445a7127ed.svg";
+const imgEllipse3Stroke = "https://www.figma.com/api/mcp/asset/98c6f019-d545-43ec-8bc8-8c5b12c82a08.svg";
+const imgVector23 = "https://www.figma.com/api/mcp/asset/d8484186-b5c4-44cd-91b2-8df8d6a3359a.svg";
+const imgVector24 = "https://www.figma.com/api/mcp/asset/fd760fb3-8746-49b1-a91c-afc2e74b6069.svg";
+const imgUnion4 = "https://www.figma.com/api/mcp/asset/114be3fd-7538-43bc-baa6-8d6790a8bcf6.svg";
+const imgUnion5 = "https://www.figma.com/api/mcp/asset/4df3ca08-804f-4a59-8d50-2df7bb226f65.svg";
+const imgFrame46 = "https://www.figma.com/api/mcp/asset/6307ed7f-d7f4-494b-b3e4-a6576ca9217e.svg";
+const imgUnion6 = "https://www.figma.com/api/mcp/asset/5be362ad-74ce-4158-9469-ab637999c41c.svg";
+const imgUnion7 = "https://www.figma.com/api/mcp/asset/ea3c9a36-2636-4617-864c-39540bffa001.svg";
+const imgGroup60 = "https://www.figma.com/api/mcp/asset/335f1038-b82d-4836-870d-e67c0f00d9f9.svg";
+const imgImage11 = "https://www.figma.com/api/mcp/asset/fe32e651-6f44-4f3e-aafb-8095eace235a.svg";
+const imgEllipse10 = "https://www.figma.com/api/mcp/asset/32d1be53-b46c-4659-b796-a650fb8dd469.svg";
+const imgEllipse11 = "https://www.figma.com/api/mcp/asset/6ab526e0-bfbe-40b7-9c6a-2206222cab48.svg";
+const imgEllipse14 = "https://www.figma.com/api/mcp/asset/82c20b2d-a79d-46e6-839b-8c09ba66022d.svg";
+const imgEllipse15 = "https://www.figma.com/api/mcp/asset/2819517c-f001-4091-9583-682083d1b402.svg";
+const imgEllipse16 = "https://www.figma.com/api/mcp/asset/9012637f-6631-413d-8b66-d14fde1cf40b.svg";
+const imgEllipse17 = "https://www.figma.com/api/mcp/asset/ef960d82-0675-4d0c-9c7b-8125f49d7a8f.svg";
+const imgVector25 = "https://www.figma.com/api/mcp/asset/b8b5f4ba-eb8f-4f26-9735-5418d894815b.svg";
+const imgStar = "https://www.figma.com/api/mcp/asset/d49a0e35-b4d8-474e-baaf-5e302fe45275.svg";
+const imgVector26 = "https://www.figma.com/api/mcp/asset/31d123ac-a3db-4887-bf86-9c9d84467be2.svg";
+const imgVector27 = "https://www.figma.com/api/mcp/asset/1e78615f-540f-4548-b983-e173c8612a8b.svg";
+const imgUnion8 = "https://www.figma.com/api/mcp/asset/720c061d-c41e-40d9-9b09-e14d9ac7afb6.svg";
+const imgUnion9 = "https://www.figma.com/api/mcp/asset/e4f63db2-04a9-4bf6-887f-28e69f1c0b41.svg";
+const imgUnion10 = "https://www.figma.com/api/mcp/asset/d401eb12-3cb1-40e8-996b-441168575276.svg";
+const imgSmiley = "https://www.figma.com/api/mcp/asset/d0f759fd-06c3-4772-b920-3a8741e8305c.svg";
+const imgVector28 = "https://www.figma.com/api/mcp/asset/fe73ff5f-b4a0-4aaf-8c5c-337a752b18f8.svg";
+const imgVector29 = "https://www.figma.com/api/mcp/asset/22716062-53ee-4b24-8810-675445cb21a8.svg";
+const imgVector30 = "https://www.figma.com/api/mcp/asset/5299b02c-2c40-4ec3-a0b9-481ddaccde6c.svg";
+const imgVector31 = "https://www.figma.com/api/mcp/asset/e777ce03-c933-4a59-a580-3c480190eee7.svg";
+const imgVector32 = "https://www.figma.com/api/mcp/asset/0c938851-024e-4010-b506-338f9f80c1d8.svg";
+const imgVector33 = "https://www.figma.com/api/mcp/asset/ce8d1197-d4c5-47d4-80e8-3569b079a05e.svg";
+const imgVector34 = "https://www.figma.com/api/mcp/asset/c289edbf-1802-41f0-a1da-3107e9c42da5.svg";
+const imgVector35 = "https://www.figma.com/api/mcp/asset/f4757b59-a5cd-42d8-bf2e-8e69ec0d176e.svg";
+const imgVector36 = "https://www.figma.com/api/mcp/asset/28c40fa7-2b18-451c-af1e-83a8ce28fe4f.svg";
+const imgUsersFour = "https://www.figma.com/api/mcp/asset/ea7f9761-d494-419c-9b68-31dd50d0f6da.svg";
+const imgVector37 = "https://www.figma.com/api/mcp/asset/d796cb20-f1da-4665-9d11-ebf9192d2570.svg";
+const imgVector38 = "https://www.figma.com/api/mcp/asset/65ff3017-7a9e-440d-a88d-8ef0f7ae06a4.svg";
+const imgVector39 = "https://www.figma.com/api/mcp/asset/577a51ed-49df-4093-a654-1f2ca7e31bc4.svg";
+const imgUnion11 = "https://www.figma.com/api/mcp/asset/45d88234-3988-43a2-8185-865abf745261.svg";
+const imgPet = "https://www.figma.com/api/mcp/asset/b24c3d60-c260-4c39-8d00-d79a4b67769f.svg";
+const imgParadise = "https://www.figma.com/api/mcp/asset/c95e7840-15c1-4497-bd58-ec851992eea0.svg";
+const imgVector40 = "https://www.figma.com/api/mcp/asset/1bf8ab29-1a15-479b-9acd-c538bd25e983.svg";
+const imgVector41 = "https://www.figma.com/api/mcp/asset/4d440b9d-10c6-4e9a-9dcb-0d35706f130c.svg";
+
+function Footer({ className }: { className?: string }) {
+  return (
+    <div className={className || "h-[584.517px] relative w-[1440px]"} data-node-id="613:2175" data-name="Footer">
+      <div className="absolute h-[584.517px] left-0 top-0 w-[1440px]" data-node-id="609:1880">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector9} />
+      </div>
+      <div className="absolute flex items-center justify-center left-[1168px] size-[518.924px] top-[65.52px]" data-node-id="609:1881">
+        <div className="-rotate-45 flex-none">
+          <div className="h-[349.651px] relative w-[384.218px]" data-name="Union">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion} />
+          </div>
+        </div>
+      </div>
+      <div className="absolute flex items-center justify-center left-[1.48px] size-[184.602px] top-[403.52px]" data-node-id="609:1882">
+        <div className="flex-none rotate-45">
+          <div className="h-[124.385px] relative w-[136.682px]" data-name="Union">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion1} />
+          </div>
+        </div>
+      </div>
+      <div className="-translate-y-1/2 absolute content-stretch flex items-center justify-between left-[120px] top-[calc(50%+0.26px)] w-[1199px]" data-node-id="609:1883">
+        <div className="content-stretch flex flex-col gap-[20px] items-start relative shrink-0 w-[387px]" data-node-id="609:1884">
+          <div className="relative shrink-0 size-[100px]" data-node-id="609:1885" data-name="Logo">
+            <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[100px] top-1/2" data-node-id="I609:1885;475:552">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup27} />
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col gap-[20px] items-start relative shrink-0 w-full" data-node-id="609:1886">
+            <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[22px] relative shrink-0 text-[#252525] text-[18px] w-full" data-node-id="609:1887">{`Welcome to Cuddle & Care Pets! We provide quality pet products, grooming, and care advice for your furry friends.`}</p>
+            <div className="content-stretch flex gap-[20px] items-start relative shrink-0 w-full" data-node-id="613:2615">
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px relative" data-node-id="613:2424">
+                <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="609:1888">
+                  <div className="relative shrink-0 size-[24px]" data-node-id="609:1889" data-name="Envelope">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEnvelope} />
+                    <div className="absolute inset-[21.88%_12.5%_43.75%_12.5%]" data-node-id="I609:1889;475:8309" data-name="Vector">
+                      <div className="absolute inset-[-9.09%_-4.17%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector} />
+                      </div>
+                    </div>
+                    <div className="absolute inset-[21.88%_12.5%]" data-node-id="I609:1889;475:8310" data-name="Vector">
+                      <div className="absolute inset-[-5.56%_-4.17%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector1} />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-[22.76%] left-[13.46%] right-[56.82%] top-1/2" data-node-id="I609:1889;475:8311" data-name="Vector">
+                      <div className="absolute inset-[-11.47%_-10.52%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector2} />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-[22.76%] left-[56.82%] right-[13.46%] top-1/2" data-node-id="I609:1889;475:8312" data-name="Vector">
+                      <div className="absolute inset-[-11.47%_-10.52%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector3} />
+                      </div>
+                    </div>
+                  </div>
+                  <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] [word-break:break-word] block cursor-pointer decoration-from-font decoration-solid flex-[1_0_0] font-['Assistant:Regular'] font-normal leading-[22px] min-w-px overflow-hidden relative text-[#252525] text-[18px] text-ellipsis underline whitespace-nowrap" href="mailto:anhdansgvn@gmail.com" data-node-id="609:1890" target="_blank">
+                    anhdansgvn@gmail.com
+                  </a>
+                </div>
+                <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="609:1891">
+                  <div className="relative shrink-0 size-[24px]" data-node-id="609:1892" data-name="Phone">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEnvelope} />
+                    <div className="absolute inset-[12.5%_12.5%_15.62%_15.62%]" data-node-id="I609:1892;475:9161" data-name="Vector">
+                      <div className="absolute inset-[-4.35%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector4} />
+                      </div>
+                    </div>
+                  </div>
+                  <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] [word-break:break-word] block cursor-pointer decoration-from-font decoration-solid flex-[1_0_0] font-['Assistant:Regular'] font-normal leading-[22px] min-w-px overflow-hidden relative text-[#252525] text-[18px] text-ellipsis underline whitespace-nowrap" href="https://+84938772416" data-node-id="609:1893" target="_blank">
+                    +84938772416
+                  </a>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px relative" data-node-id="613:2485">
+                <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="613:2486">
+                  <div className="relative shrink-0 size-[24px]" data-node-id="613:2487" data-name="Envelope">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEnvelope} />
+                    <div className="absolute inset-[21.88%_12.5%_43.75%_12.5%]" data-node-id="I613:2487;475:8309" data-name="Vector">
+                      <div className="absolute inset-[-9.09%_-4.17%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector} />
+                      </div>
+                    </div>
+                    <div className="absolute inset-[21.88%_12.5%]" data-node-id="I613:2487;475:8310" data-name="Vector">
+                      <div className="absolute inset-[-5.56%_-4.17%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector1} />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-[22.76%] left-[13.46%] right-[56.82%] top-1/2" data-node-id="I613:2487;475:8311" data-name="Vector">
+                      <div className="absolute inset-[-11.47%_-10.52%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector2} />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-[22.76%] left-[56.82%] right-[13.46%] top-1/2" data-node-id="I613:2487;475:8312" data-name="Vector">
+                      <div className="absolute inset-[-11.47%_-10.52%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector3} />
+                      </div>
+                    </div>
+                  </div>
+                  <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] [word-break:break-word] block cursor-pointer decoration-from-font decoration-solid flex-[1_0_0] font-['Assistant:Regular'] font-normal leading-[22px] min-w-px overflow-hidden relative text-[#252525] text-[18px] text-ellipsis underline whitespace-nowrap" href="mailto:thienphuc093@gmail.com" data-node-id="613:2488" target="_blank">
+                    thienphuc093@gmail.com
+                  </a>
+                </div>
+                <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="613:2489">
+                  <div className="relative shrink-0 size-[24px]" data-node-id="613:2490" data-name="Phone">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEnvelope} />
+                    <div className="absolute inset-[12.5%_12.5%_15.62%_15.62%]" data-node-id="I613:2490;475:9161" data-name="Vector">
+                      <div className="absolute inset-[-4.35%]">
+                        <img alt="" className="block max-w-none size-full" src={imgVector4} />
+                      </div>
+                    </div>
+                  </div>
+                  <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] [word-break:break-word] block cursor-pointer decoration-from-font decoration-solid flex-[1_0_0] font-['Assistant:Regular'] font-normal leading-[22px] min-w-px overflow-hidden relative text-[#252525] text-[18px] text-ellipsis underline whitespace-nowrap" href="https://+84909403482" data-node-id="613:2491" target="_blank">
+                    +84909403482
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="609:1894">
+            <div className="content-stretch flex gap-[20px] items-center relative shrink-0" data-node-id="609:1895">
+              <div className="relative shrink-0 size-[32px]" data-node-id="609:1896" data-name="InstagramLogo">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgInstagramLogo} />
+                <div className="absolute inset-[9.38%]" data-node-id="I609:1896;475:33480" data-name="Vector">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector5} />
+                </div>
+              </div>
+              <div className="relative shrink-0 size-[32px]" data-node-id="609:1897" data-name="FacebookLogo">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgInstagramLogo} />
+                <div className="absolute inset-[9.38%_9.38%_9.65%_9.38%]" data-node-id="I609:1897;475:32783" data-name="Vector">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector6} />
+                </div>
+              </div>
+              <div className="relative shrink-0 size-[32px]" data-node-id="609:1898" data-name="LinkedinLogo">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgInstagramLogo} />
+                <div className="absolute inset-[9.38%]" data-node-id="I609:1898;475:33564" data-name="Vector">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector7} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0" data-node-id="609:1899">
+          <div className="col-1 flex h-[339.35px] items-center justify-center ml-0 mt-0 relative row-1 w-[315.726px]" data-node-id="609:1900">
+            <div className="-scale-y-100 flex-none rotate-165">
+              <div className="h-[284.139px] relative w-[250.729px]" data-name="Rectangle 171 (Stroke)">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" height="284.139" src={imgRectangle171Stroke} width="250.729" />
+              </div>
+            </div>
+          </div>
+          <div className="col-1 flex h-[339.35px] items-center justify-center ml-0 mt-0 relative row-1 w-[315.726px]" data-node-id="609:1901">
+            <div className="-rotate-165 -scale-y-100 flex-none">
+              <div className="h-[284.139px] relative w-[250.729px]">
+                <div className="absolute inset-[-10.56%_-11.97%]">
+                  <img alt="" className="block max-w-none size-full" height="344.139" src={imgRectangle169} width="310.729" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-1 flex h-[339.35px] items-center justify-center ml-0 mt-0 relative row-1 w-[315.726px]" data-node-id="609:1902">
+            <div className="-rotate-165 -scale-y-100 flex-none">
+              <div className="h-[284.139px] relative w-[250.729px]" data-name="Rectangle 169 (Stroke)">
+                <div className="absolute inset-[-10.56%_-11.97%]">
+                  <img alt="" className="block max-w-none size-full" src={imgRectangle169Stroke} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-1 flex h-[228.984px] items-center justify-center ml-[32.77px] mt-[36.27px] relative row-1 w-[250.729px]" data-node-id="609:1903">
+            <div className="-scale-y-100 flex-none rotate-180">
+              <div className="h-[228.984px] relative w-[250.729px]">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" height="228.984" src={imgRectangle170} width="250.729" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="content-stretch flex gap-[20px] items-start justify-center relative shrink-0 w-[386px]" data-node-id="609:1904">
+          <div className="content-stretch flex flex-col gap-[10px] items-start justify-center relative shrink-0 w-[180px]" data-node-id="609:1905">
+            <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[30px] relative shrink-0 text-[#252525] text-[24px] w-full" data-node-id="609:1906">
+              Service
+            </p>
+            <div className="content-stretch flex items-center justify-end py-[10px] relative shrink-0 w-full" data-node-id="609:1907" data-name="About">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Bold'] font-bold leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I609:1907;22:65">
+                Pet care
+              </p>
+            </div>
+            <div className="content-stretch flex items-center justify-end py-[10px] relative shrink-0 w-full" data-node-id="609:1908" data-name="About">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Bold'] font-bold leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I609:1908;22:65">
+                Specialty Program
+              </p>
+            </div>
+            <div className="content-stretch flex items-center justify-end py-[10px] relative shrink-0 w-full" data-node-id="609:1909" data-name="About">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Bold'] font-bold leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I609:1909;22:65">
+                Security Program
+              </p>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col gap-[10px] items-start justify-center relative shrink-0 w-[180px]" data-node-id="609:1910">
+            <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[30px] relative shrink-0 text-[#252525] text-[24px] w-full" data-node-id="609:1911">
+              Website
+            </p>
+            <div className="content-stretch flex items-center py-[10px] relative shrink-0 w-full" data-node-id="609:1912" data-name="About">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Bold'] font-bold leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I609:1912;22:65">
+                About
+              </p>
+            </div>
+            <div className="content-stretch flex items-center py-[10px] relative shrink-0 w-full" data-node-id="609:1913" data-name="About">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Bold'] font-bold leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I609:1913;22:65">
+                Service
+              </p>
+            </div>
+            <div className="content-stretch flex items-center py-[10px] relative shrink-0 w-full" data-node-id="609:1914" data-name="About">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Bold'] font-bold leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I609:1914;22:65">
+                Discovery
+              </p>
+            </div>
+            <div className="content-stretch flex items-center py-[10px] relative shrink-0 w-full" data-node-id="609:1915" data-name="About">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Bold'] font-bold leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I609:1915;22:65">
+                Shop
+              </p>
+            </div>
+            <div className="content-stretch flex items-center py-[10px] relative shrink-0 w-full" data-node-id="609:1916" data-name="About">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Bold'] font-bold leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I609:1916;22:65">
+                Contact
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FormContact({ className }: { className?: string }) {
+  return (
+    <div className={className || "content-stretch flex gap-[122px] items-center justify-center overflow-clip py-[100px] relative w-[1440px]"} data-node-id="698:5075" data-name="Form Contact">
+      <div className="content-stretch flex flex-col gap-[40px] items-start relative shrink-0 w-[488px]" data-node-id="481:1104">
+        <div className="content-stretch flex gap-[10px] items-center relative shrink-0" data-node-id="481:1105">
+          <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[36px] relative shrink-0 text-[#410075] text-[28px] text-center uppercase whitespace-nowrap" data-node-id="481:1106">
+            Contact with US
+          </p>
+          <div className="flex h-[54px] items-center justify-center relative shrink-0 w-[47px]" data-node-id="481:1107">
+            <div className="flex-none rotate-90">
+              <div className="h-[47px] relative w-[54px]" data-name="Union">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion2} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="960:9006">
+          <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-full" data-node-id="960:9007" data-name="Input-Textfeild">
+            <div className="border border-[#ccc] border-solid content-stretch flex gap-[10px] items-center px-[20px] py-[15px] relative rounded-[10px] shrink-0 w-full" data-node-id="I960:9007;914:6703" data-name="Component 2">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Regular'] font-normal leading-[22px] min-w-px relative text-[#252525] text-[18px]" data-node-id="I960:9007;914:6705">
+                Phuc Nguyen
+              </p>
+              <div className="absolute bg-[#fcf9ff] content-stretch flex items-center justify-center left-[19px] top-[-9px]" data-node-id="I960:9007;914:6706">
+                <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[normal] relative shrink-0 text-[#999] text-[12px] text-center whitespace-nowrap" data-node-id="I960:9007;914:6707">
+                  Full Name
+                </p>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[16px] items-center px-[20px] relative shrink-0 w-full" data-node-id="I960:9007;914:6709" data-name="Error" />
+          </div>
+          <button className="content-stretch cursor-pointer flex flex-col gap-[5px] items-start relative shrink-0 w-full" data-node-id="960:9008" data-name="Input-Textfeild">
+            <div className="border border-[#ccc] border-solid content-stretch flex gap-[10px] items-center px-[20px] py-[15px] relative rounded-[10px] shrink-0 w-full" data-node-id="I960:9008;914:6722" data-name="Component 2">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Regular'] font-normal leading-[22px] min-w-px relative text-[#999] text-[18px] text-left" data-node-id="I960:9008;914:6724">
+                Phone Number
+              </p>
+            </div>
+            <div className="content-stretch flex h-[16px] items-center px-[20px] relative shrink-0 w-full" data-node-id="I960:9008;914:6728" data-name="Error" />
+          </button>
+          <button className="content-stretch cursor-pointer flex flex-col gap-[5px] items-start relative shrink-0 w-full" data-node-id="960:9009" data-name="Input-Textfeild">
+            <div className="border border-[#ccc] border-solid content-stretch flex gap-[10px] items-center px-[20px] py-[15px] relative rounded-[10px] shrink-0 w-full" data-node-id="I960:9009;914:6722" data-name="Component 2">
+              <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Regular'] font-normal leading-[22px] min-w-px relative text-[#999] text-[18px] text-left" data-node-id="I960:9009;914:6724">
+                Email
+              </p>
+            </div>
+            <div className="content-stretch flex h-[16px] items-center px-[20px] relative shrink-0 w-full" data-node-id="I960:9009;914:6728" data-name="Error" />
+          </button>
+        </div>
+        <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0" data-node-id="481:1117">
+          <div className="bg-[#410075] content-stretch flex gap-[10px] h-[44px] items-center justify-center px-[30px] py-[10px] relative rounded-[5px] shrink-0 w-[120px]" data-node-id="481:1118" data-name="Grow">
+            <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0" data-node-id="I481:1118;25:193">
+              <p className="[word-break:break-word] font-['Assistant:SemiBold'] font-semibold leading-[22px] relative shrink-0 text-[18px] text-center text-white whitespace-nowrap" data-node-id="I481:1118;25:189">
+                Submit
+              </p>
+            </div>
+          </div>
+          <div className="border border-[#727272] border-solid content-stretch flex gap-[10px] h-[44px] items-center justify-center px-[30px] py-[10px] relative rounded-[5px] shrink-0 w-[120px]" data-node-id="481:1119" data-name="Grow">
+            <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0" data-node-id="I481:1119;1065:10494">
+              <p className="[word-break:break-word] font-['Assistant:SemiBold'] font-semibold leading-[22px] relative shrink-0 text-[#727272] text-[18px] text-center whitespace-nowrap" data-node-id="I481:1119;1065:10495">
+                Refresh
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="h-[379px] relative shrink-0 w-[590px]" data-node-id="481:1120">
+        <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[300px] top-[calc(50%+0.5px)]" data-node-id="481:1121">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse13} />
+        </div>
+        <div className="-translate-x-1/2 -translate-y-1/2 absolute left-[calc(50%-0.5px)] size-[289px] top-1/2" data-node-id="481:1122">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse12} />
+        </div>
+        <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[239px] left-1/2 top-1/2 w-[506px]" data-node-id="481:1123" data-name="image 8">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <img alt="" className="absolute h-full left-[-5.17%] max-w-none top-0 w-[105.2%]" src={imgImage8} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Homepage() {
+  return (
+    <div className="bg-white content-stretch flex flex-col items-center relative size-full" data-node-id="1130:21050" data-name="Homepage">
+      <div className="bg-white h-[1024px] overflow-clip relative shrink-0 w-[1440px]" data-node-id="I1130:21050;646:3174" data-name="PetShop05">
+        <div className="absolute h-[808.5px] left-0 top-0 w-[1440.5px]" data-node-id="I1130:21050;646:3175">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector8} />
+        </div>
+        <div className="absolute h-[808.5px] left-0 top-0 w-[1440.5px]" data-node-id="I1130:21050;855:7899" data-name="Mask group">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgMaskGroup} />
+        </div>
+        <div className="absolute flex h-[54px] items-center justify-center left-[calc(16.67%+53px)] top-[calc(50%-3px)] w-[47px]" data-node-id="I1130:21050;646:3176">
+          <div className="flex-none rotate-90">
+            <div className="h-[47px] relative w-[54px]" data-name="Union">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion3} />
+            </div>
+          </div>
+        </div>
+        <div className="-translate-y-1/2 absolute content-stretch flex flex-col gap-[20px] items-start left-[120px] top-[calc(45%+39.2px)]" data-node-id="I1130:21050;646:3178">
+          <div className="content-stretch flex items-start relative shrink-0 w-[386px]" data-node-id="I1130:21050;646:3179">
+            <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[30px] relative shrink-0 text-[#595959] text-[24px] w-[386px]" data-node-id="I1130:21050;646:3180">
+              Welcome to the website to book all your pet care and sales
+            </p>
+          </div>
+          <div className="content-stretch flex items-start relative shrink-0" data-node-id="I1130:21050;646:3181">
+            <div className="content-stretch flex flex-col items-start relative shrink-0 w-[441px]" data-node-id="I1130:21050;646:3182">
+              <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I1130:21050;646:3183">
+                <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[48px] relative shrink-0 text-[#410075] text-[36px] text-center whitespace-nowrap" data-node-id="I1130:21050;646:3184">
+                  CHOOSE THE BEST WAY FOR
+                </p>
+              </div>
+              <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[48px] relative shrink-0 text-[#a1be97] text-[36px] w-full" data-node-id="I1130:21050;646:3185">
+                YOUR PET
+              </p>
+            </div>
+          </div>
+          <a className="bg-[#410075] content-stretch cursor-pointer flex gap-[10px] h-[44px] items-center justify-center px-[30px] py-[10px] relative rounded-[5px] shrink-0 w-[370px]" data-node-id="I1130:21050;646:3186" data-name="Grow">
+            <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0" data-node-id="I1130:21050;646:3186;25:193">
+              <p className="[word-break:break-word] font-['Assistant:SemiBold'] font-semibold leading-[22px] relative shrink-0 text-[18px] text-center text-white whitespace-nowrap" data-node-id="I1130:21050;646:3186;25:189">
+                Book a day to take care of your pet now
+              </p>
+            </div>
+          </a>
+        </div>
+        <div className="absolute contents left-[calc(41.67%+83px)] top-[147px]" data-node-id="I1130:21050;646:3187">
+          <div className="absolute contents left-[calc(50%+28px)] top-[147px]" data-node-id="I1130:21050;646:3188">
+            <div className="absolute contents left-[calc(50%+28px)] top-[147px]" data-node-id="I1130:21050;646:3189">
+              <div className="absolute h-[616px] left-[calc(50%+69px)] top-[173.51px] w-[531px]" data-node-id="I1130:21050;646:3190" data-name="Stroke">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" height="616" src={imgStroke} width="531" />
+              </div>
+              <div className="absolute h-[596px] left-[calc(50%+69px)] top-[calc(10%+91.11px)] w-[513px]" data-node-id="I1130:21050;646:3191" data-name="Fill">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFill} />
+              </div>
+              <div className="absolute contents left-[calc(50%+28px)] top-[147px]" data-node-id="I1130:21050;646:3192" data-name="Mask group">
+                <div className="absolute h-[630.725px] left-[calc(50%+40px)] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-12px_-24.018px] mask-size-[558.551px_672.819px] top-[171.02px] w-[526px]" data-node-id="I1130:21050;646:3194" style={{ maskImage: `url("${imgImage1}")` }} data-name="image 1">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" height="630.725" src={imgImage2} width="526" />
+                </div>
+              </div>
+            </div>
+            <div className="absolute contents left-[calc(75%-27px)] top-[calc(50%+47.51px)]" data-node-id="I1130:21050;646:3195">
+              <div className="absolute bg-[#e5c3ff] left-[calc(75%-27px)] rounded-[15px] size-[254px] top-[calc(60%+27.6px)]" data-node-id="I1130:21050;646:3196" />
+              <div className="absolute contents left-[calc(75%-27px)] top-[calc(50%+47.51px)]" data-node-id="I1130:21050;646:3197" data-name="Mask group">
+                <div className="absolute h-[334.211px] left-[calc(75%-27px)] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-size-[254px_336.641px] top-[calc(50%+47.51px)] w-[292.89px]" data-node-id="I1130:21050;646:3199" style={{ maskImage: `url("${imgImage3}")` }} data-name="image 2">
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <img alt="" className="absolute h-[115.01%] left-[-49.67%] max-w-none top-[-6.24%] w-[178.17%]" src={imgImage4} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="absolute bg-white content-stretch drop-shadow-[0px_4px_20px_rgba(0,0,0,0.1)] flex gap-[10px] items-center justify-center left-[calc(58.33%-27px)] p-[10px] rounded-[15px] top-[calc(80%-28.2px)]" data-node-id="I1130:21050;646:3200">
+            <div className="content-stretch flex flex-col gap-[5px] items-end relative shrink-0" data-node-id="I1130:21050;646:3200;28:110">
+              <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[22px] relative shrink-0 text-[#410075] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;646:3200;28:111">
+                Mark
+              </p>
+              <div className="bg-[#410075] h-[5px] relative rounded-[300px] shrink-0 w-[111px]" data-node-id="I1130:21050;646:3200;28:112" />
+              <div className="bg-[#410075] h-[5px] relative rounded-[300px] shrink-0 w-[50px]" data-node-id="I1130:21050;646:3200;28:113" />
+              <div className="content-stretch flex gap-[5px] items-center justify-center relative shrink-0" data-node-id="I1130:21050;646:3200;28:114">
+                <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[normal] relative shrink-0 text-[#6f00c6] text-[12px] text-center whitespace-nowrap" data-node-id="I1130:21050;646:3200;28:115">
+                  1k+
+                </p>
+                <div className="h-[8px] relative shrink-0 w-[8.326px]" data-node-id="I1130:21050;646:3200;28:116">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStar1} />
+                </div>
+              </div>
+            </div>
+            <div className="relative rounded-[10px] shrink-0 size-[80px]" data-node-id="I1130:21050;646:3200;28:117">
+              <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[10px]">
+                <img alt="" className="absolute h-[267.99%] left-[-107.92%] max-w-none top-[-11.29%] w-[363.38%]" src={imgRectangle3} />
+              </div>
+            </div>
+          </div>
+          <div className="absolute bg-white content-stretch drop-shadow-[0px_4px_20px_rgba(0,0,0,0.1)] flex gap-[10px] items-center justify-center left-[calc(41.67%+83px)] p-[10px] rounded-[15px] top-[calc(10%+104.6px)]" data-node-id="I1130:21050;646:3201">
+            <div className="content-stretch flex flex-col gap-[5px] items-end relative shrink-0" data-node-id="I1130:21050;646:3201;28:110">
+              <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[22px] relative shrink-0 text-[#410075] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;646:3201;28:111">
+                Tiny
+              </p>
+              <div className="bg-[#410075] h-[5px] relative rounded-[300px] shrink-0 w-[111px]" data-node-id="I1130:21050;646:3201;28:112" />
+              <div className="bg-[#410075] h-[5px] relative rounded-[300px] shrink-0 w-[50px]" data-node-id="I1130:21050;646:3201;28:113" />
+              <div className="content-stretch flex gap-[5px] items-center justify-center relative shrink-0" data-node-id="I1130:21050;646:3201;28:114">
+                <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[normal] relative shrink-0 text-[#6f00c6] text-[12px] text-center whitespace-nowrap" data-node-id="I1130:21050;646:3201;28:115">
+                  1k+
+                </p>
+                <div className="h-[8px] relative shrink-0 w-[8.326px]" data-node-id="I1130:21050;646:3201;28:116">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStar1} />
+                </div>
+              </div>
+            </div>
+            <div className="relative rounded-[10px] shrink-0 size-[80px]" data-node-id="I1130:21050;646:3201;28:117">
+              <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[10px]">
+                <div className="absolute bg-[#ebebeb] inset-0 rounded-[10px]" />
+                <div className="absolute inset-0 overflow-hidden rounded-[10px]">
+                  <img alt="" className="absolute h-[166.57%] left-[-8.12%] max-w-none top-[-32.69%] w-[128.75%]" src={imgRectangle4} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute flex items-center justify-center left-[calc(91.67%-43px)] size-[40px] top-[calc(10%+89.6px)]" data-node-id="I1130:21050;855:7875">
+          <div className="flex-none rotate-[31.57deg]">
+            <div className="bg-[#6ab052] content-stretch flex items-center p-[5.592px] relative rounded-[167.764px]">
+              <div className="relative shrink-0 size-[17.895px]" data-node-id="I1130:21050;855:7876" data-name="Dog">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgDog} />
+                <div className="absolute bottom-[15.63%] left-1/2 right-1/2 top-3/4" data-node-id="I1130:21050;855:7876;475:4893" data-name="Vector">
+                  <div className="absolute inset-[-33.33%_-0.56px]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector10} />
+                  </div>
+                </div>
+                <div className="absolute bottom-1/4 left-[43.75%] right-[43.75%] top-[68.75%]" data-node-id="I1130:21050;855:7876;475:4894" data-name="Vector">
+                  <div className="absolute inset-[-50%_-25%]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector11} />
+                  </div>
+                </div>
+                <div className="absolute inset-[18.75%_40.63%_81.25%_40.63%]" data-node-id="I1130:21050;855:7876;475:4895" data-name="Vector">
+                  <div className="absolute inset-[-0.56px_-16.67%]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector12} />
+                  </div>
+                </div>
+                <div className="absolute inset-[12.5%_59.37%_46.86%_9.37%]" data-node-id="I1130:21050;855:7876;475:4896" data-name="Vector">
+                  <div className="absolute inset-[-7.69%_-10%_-7.72%_-10.02%]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector13} />
+                  </div>
+                </div>
+                <div className="absolute inset-[12.5%_9.37%_46.86%_59.38%]" data-node-id="I1130:21050;855:7876;475:4897" data-name="Vector">
+                  <div className="absolute inset-[-7.69%_-10.02%_-7.72%_-10%]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector14} />
+                  </div>
+                </div>
+                <div className="absolute bottom-[40.63%] left-[31.25%] right-[59.38%] top-1/2" data-node-id="I1130:21050;855:7876;475:4898" data-name="Vector">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector15} />
+                </div>
+                <div className="absolute bottom-[40.63%] left-[59.38%] right-[31.25%] top-1/2" data-node-id="I1130:21050;855:7876;475:4899" data-name="Vector">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector15} />
+                </div>
+                <div className="absolute inset-[47.02%_18.75%_15.63%_18.75%]" data-node-id="I1130:21050;855:7876;475:4900" data-name="Vector">
+                  <div className="absolute inset-[-8.37%_-5%]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector16} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute flex items-center justify-center left-[calc(50%-25px)] size-[50px] top-[calc(50%+31px)]" data-node-id="I1130:21050;855:7877">
+          <div className="flex-none rotate-[-27.45deg]">
+            <div className="bg-[#c80006] content-stretch flex items-center p-[7.131px] relative rounded-[213.931px]">
+              <div className="relative shrink-0 size-[22.819px]" data-node-id="I1130:21050;855:7878" data-name="Cat">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgCat} />
+                <div className="absolute bottom-[12.5%] left-1/2 right-1/2 top-3/4" data-node-id="I1130:21050;855:7878;475:4383" data-name="Vector">
+                  <div className="absolute inset-[-25%_-0.71px]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector17} />
+                  </div>
+                </div>
+                <div className="absolute bottom-[40.63%] left-[28.13%] right-[62.5%] top-1/2" data-node-id="I1130:21050;855:7878;475:4384" data-name="Vector">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector18} />
+                </div>
+                <div className="absolute bottom-[40.63%] left-[62.5%] right-[28.13%] top-1/2" data-node-id="I1130:21050;855:7878;475:4385" data-name="Vector">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector18} />
+                </div>
+                <div className="absolute bottom-[65.63%] left-1/2 right-1/2 top-[18.75%]" data-node-id="I1130:21050;855:7878;475:4386" data-name="Vector">
+                  <div className="absolute inset-[-20%_-0.71px]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector19} />
+                  </div>
+                </div>
+                <div className="absolute bottom-1/4 left-[43.75%] right-[43.75%] top-[68.75%]" data-node-id="I1130:21050;855:7878;475:4387" data-name="Vector">
+                  <div className="absolute inset-[-50%_-25%]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector20} />
+                  </div>
+                </div>
+                <div className="absolute inset-[20.71%_62.5%_65.63%_37.5%]" data-node-id="I1130:21050;855:7878;475:4388" data-name="Vector">
+                  <div className="absolute inset-[-22.86%_-0.71px]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector21} />
+                  </div>
+                </div>
+                <div className="absolute inset-[20.71%_37.5%_65.63%_62.5%]" data-node-id="I1130:21050;855:7878;475:4389" data-name="Vector">
+                  <div className="absolute inset-[-22.86%_-0.71px]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector21} />
+                  </div>
+                </div>
+                <div className="absolute inset-[15.62%_12.5%_12.5%_12.5%]" data-node-id="I1130:21050;855:7878;475:4390" data-name="Vector">
+                  <div className="absolute inset-[-4.35%_-4.17%]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector22} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white h-[736px] overflow-clip relative shrink-0 w-[1440px]" data-node-id="I1130:21050;28:138" data-name="PetShop04">
+        <div className="absolute contents left-[calc(50%+57px)] top-[11px]" data-node-id="I1130:21050;130:310" data-name="Background">
+          <div className="absolute contents left-[calc(66.67%+11px)] top-[11px]" data-node-id="I1130:21050;28:171">
+            <div className="absolute border-11 border-[#ccc] border-solid left-[calc(66.67%+11px)] rounded-[348.5px] size-[697px] top-[11px]" data-node-id="I1130:21050;28:169" />
+            <div className="absolute border-11 border-[#ccc] border-solid left-[calc(75%-73px)] rounded-[348.5px] size-[626px] top-[47px]" data-node-id="I1130:21050;28:170" />
+            <div className="absolute border-11 border-[#ccc] border-solid left-[calc(75%-37px)] rounded-[348.5px] size-[554px] top-[83px]" data-node-id="I1130:21050;28:172" />
+          </div>
+          <div className="absolute bg-[#e5c3ff] left-[calc(50%+57px)] rounded-[348.5px] size-[697px] top-[128px]" data-node-id="I1130:21050;28:168" />
+          <div className="absolute h-[760px] left-[calc(58.33%+51px)] top-[48px] w-[549px]" data-node-id="I1130:21050;28:144" data-name="image 3">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage5} />
+          </div>
+        </div>
+        <div className="-translate-y-1/2 absolute content-stretch flex flex-col gap-[15px] items-start left-[120px] top-[calc(50%+0.5px)] w-[590px]" data-node-id="I1130:21050;28:196">
+          <div className="content-stretch flex gap-[10px] items-center relative shrink-0" data-node-id="I1130:21050;28:165">
+            <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[36px] relative shrink-0 text-[#410075] text-[28px] text-center uppercase whitespace-nowrap" data-node-id="I1130:21050;28:162">
+              Our Company
+            </p>
+            <div className="flex h-[54px] items-center justify-center relative shrink-0 w-[47px]" data-node-id="I1130:21050;466:5651">
+              <div className="flex-none rotate-90">
+                <div className="h-[47px] relative w-[54px]" data-name="Union">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion2} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0" data-node-id="I1130:21050;28:195">
+            <div className="content-stretch flex items-start relative shrink-0" data-node-id="I1130:21050;28:193">
+              <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[22px] relative shrink-0 text-[#252525] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;28:194">
+                About us
+              </p>
+            </div>
+            <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-[590px]" data-node-id="I1130:21050;28:192">
+              <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I1130:21050;28:166">
+                <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Regular'] font-normal leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I1130:21050;28:167">
+                  With 10 years of experience in the field of pet care and a team of experienced veterinarians, we are confident we can protect your pets from diseases they will get in the future. their nutrition and daily food intake.
+                </p>
+              </div>
+              <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I1130:21050;28:175">
+                <p className="[word-break:break-word] flex-[1_0_0] font-['Assistant:Regular'] font-normal leading-[22px] min-w-px relative text-[#595959] text-[18px]" data-node-id="I1130:21050;28:176">
+                  Loving and pampering your pet is not enough, it must also go hand in hand with their health and our service is where you can give your full trust.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="I1130:21050;36:61">
+            <div className="content-stretch flex items-start relative shrink-0" data-node-id="I1130:21050;36:58">
+              <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[22px] relative shrink-0 text-[#252525] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;36:59">
+                About consulting
+              </p>
+            </div>
+            <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="I1130:21050;36:62">
+              <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[22px] relative shrink-0 text-[#595959] text-[18px] w-full" data-node-id="I1130:21050;36:60">
+                Each pet species has a different habitat and behavior, so meet and consult directly with an animal specialist.
+              </p>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col gap-[10px] items-start justify-center relative shrink-0" data-node-id="I1130:21050;28:191">
+            <div className="content-stretch flex items-start relative shrink-0" data-node-id="I1130:21050;28:181">
+              <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[22px] relative shrink-0 text-[#252525] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;28:182">
+                Our Service
+              </p>
+            </div>
+            <div className="content-stretch flex gap-[20px] items-end relative shrink-0" data-node-id="I1130:21050;475:1182">
+              <div className="bg-[#dfefda] h-[158px] relative rounded-[10px] shrink-0 w-[285px]" data-node-id="I1130:21050;475:1183">
+                <div className="-translate-y-1/2 absolute content-stretch flex flex-col gap-[9px] items-start left-[20px] top-1/2 w-[139px]" data-node-id="I1130:21050;475:1184">
+                  <div className="[word-break:break-word] flex flex-col font-['Assistant:Bold'] font-bold justify-center leading-[0] min-w-full relative shrink-0 text-[#252525] text-[18px] w-[min-content]" data-node-id="I1130:21050;475:1185">
+                    <p className="leading-[22px]">Physical checkup your pet</p>
+                  </div>
+                  <div className="[word-break:break-word] flex flex-col font-['Assistant:Regular'] font-normal justify-center leading-[0] overflow-hidden relative shrink-0 text-[#595959] text-[12px] text-ellipsis w-[139px]" data-node-id="I1130:21050;475:1186">
+                    <p className="leading-[normal]">{`Regular physical checkups are essential for maintaining your pet's health and well-being. Our experienced veterinarians conduct thorough examinations to assess your pet's overall health, detect any potential issues, and provide preventative care. The checkup includes a review of your pet's medical history, a physical examination, and necessary diagnostic tests. We offer personalized advice and treatment plans to keep your pet healthy and happy, ensuring they receive the best possible care.`}</p>
+                  </div>
+                  <div className="bg-[#410075] content-stretch flex gap-[6px] h-[34px] items-center justify-center px-[15px] py-[10px] relative rounded-[5px] shrink-0 w-full" data-node-id="I1130:21050;475:1187" data-name="Grow">
+                    <div className="content-stretch flex items-center justify-center relative shrink-0" data-node-id="I1130:21050;475:1187;698:4715">
+                      <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[18px] relative shrink-0 text-[12px] text-center text-white whitespace-nowrap" data-node-id="I1130:21050;475:1187;698:4716">
+                        Read More
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute contents left-0 top-0" data-node-id="I1130:21050;475:1188" data-name="Mask group">
+                  <div className="absolute h-[227px] left-[136px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-136px_35px] mask-size-[285px_158px] top-[-35px] w-[158px]" data-node-id="I1130:21050;475:1190" style={{ maskImage: `url("${imgPngwingCom8}")` }} data-name="pngwing.com (8)">
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                      <img alt="" className="absolute h-full left-[-13.79%] max-w-none top-[-5.03%] w-[167.84%]" src={imgPngwingCom9} />
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute h-[105px] left-[136px] top-[-37px] w-[149px]" data-node-id="I1130:21050;475:1191" data-name="pngwing.com (8)">
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <img alt="" className="absolute h-[221.82%] left-[-15.15%] max-w-none top-[-14.09%] w-[182.61%]" src={imgPngwingCom9} />
+                  </div>
+                </div>
+              </div>
+              <div className="h-[173px] relative rounded-[10px] shrink-0 w-[285px]" data-node-id="I1130:21050;475:1192">
+                <div className="absolute bg-[#e5c3ff] h-[158px] left-0 overflow-clip rounded-[10px] top-[15px] w-[285px]" data-node-id="I1130:21050;475:1193">
+                  <div className="absolute content-stretch flex flex-col gap-[9px] items-start left-[20px] top-[20px] w-[139px]" data-node-id="I1130:21050;475:1194">
+                    <div className="[word-break:break-word] flex flex-col font-['Assistant:Bold'] font-bold h-[32px] justify-center leading-[0] min-w-full relative shrink-0 text-[#252525] text-[18px] w-[min-content]" data-node-id="I1130:21050;475:1195">
+                      <p className="leading-[22px]">Spa</p>
+                    </div>
+                    <div className="[word-break:break-word] flex flex-col font-['Assistant:Regular'] font-normal h-[32px] justify-center leading-[0] overflow-hidden relative shrink-0 text-[#595959] text-[12px] text-ellipsis w-[139px]" data-node-id="I1130:21050;475:1196">
+                      <p className="leading-[normal]">{`Our pet spa offers a luxurious and relaxing experience for your furry friends. We provide a range of grooming services, including baths, haircuts, nail trimming, and ear cleaning, all designed to keep your pet looking and feeling their best. Our skilled groomers use gentle, pet-friendly products to ensure a soothing experience. Whether it's a refreshing bath or a full grooming session, your pet will leave our spa feeling pampered and rejuvenated.`}</p>
+                    </div>
+                    <div className="bg-[#410075] content-stretch flex gap-[6px] h-[34px] items-center justify-center px-[15px] py-[10px] relative rounded-[5px] shrink-0" data-node-id="I1130:21050;1110:10981" data-name="Grow">
+                      <div className="content-stretch flex items-center justify-center relative shrink-0" data-node-id="I1130:21050;1110:10981;698:4715">
+                        <p className="[word-break:break-word] font-['Assistant:SemiBold'] font-semibold leading-[18px] relative shrink-0 text-[14px] text-center text-white whitespace-nowrap" data-node-id="I1130:21050;1110:10981;698:4716">
+                          Read more
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute contents left-0 top-[15px]" data-node-id="I1130:21050;475:1198" data-name="Mask group">
+                  <div className="absolute h-[227px] left-[136px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-136px_35px] mask-size-[285px_158px] top-[-20px] w-[158px]" data-node-id="I1130:21050;475:1200" style={{ maskImage: `url("${imgPngwingCom8}")` }} data-name="pngwing.com (8)">
+                    <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgPngwingCom10} />
+                  </div>
+                </div>
+                <div className="absolute h-[103px] left-[136px] top-[-20px] w-[158px]" data-node-id="I1130:21050;475:1201" data-name="pngwing.com (8)">
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <img alt="" className="absolute h-[220.82%] left-0 max-w-none top-[-0.22%] w-full" src={imgPngwingCom10} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white h-[1024px] overflow-clip relative shrink-0 w-[1440px]" data-node-id="I1130:21050;481:1225" data-name="PetShop04">
+        <div className="absolute contents left-0 top-[-0.01px]" data-node-id="I1130:21050;1110:11118" data-name="Background">
+          <div className="absolute h-[905.505px] left-0 top-[-0.01px] w-[1440px]" data-node-id="I1130:21050;1110:11119" data-name="Mask group">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgMaskGroup1} />
+          </div>
+        </div>
+        <div className="absolute bottom-[99px] h-[536px] left-[calc(25%+35px)] w-[650px]" data-node-id="I1130:21050;1110:11126" data-name="pngwing.com (4)">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <img alt="" className="absolute h-[110.04%] left-[-17.9%] max-w-none top-[-5.02%] w-[127.68%]" src={imgPngwingCom4} />
+          </div>
+        </div>
+        <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Assistant:Bold'] font-bold leading-[36px] left-[calc(50%-0.5px)] text-[#410075] text-[28px] text-center top-[calc(10%+119.6px)] uppercase whitespace-nowrap" data-node-id="I1130:21050;481:1307">
+          What we OFFer
+        </p>
+        <div className="absolute flex h-[54px] items-center justify-center left-[calc(58.33%-12px)] top-[calc(10%+110.6px)] w-[47px]" data-node-id="I1130:21050;481:1308">
+          <div className="flex-none rotate-90">
+            <div className="h-[47px] relative w-[54px]" data-name="Union">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion3} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute content-stretch flex flex-col gap-[114px] items-start left-[120px] top-[calc(30%+95.8px)] w-[285px]" data-node-id="I1130:21050;481:1348">
+          <div className="content-stretch flex gap-[20px] items-center relative shrink-0 w-full" data-node-id="I1130:21050;481:1315">
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] relative shrink-0 text-[#252525] text-right w-[209px]" data-node-id="I1130:21050;481:1314">
+              <div className="capitalize flex flex-col font-['Assistant:Bold'] font-bold justify-center relative shrink-0 text-[20px] w-full" data-node-id="I1130:21050;481:1312">
+                <p className="leading-[26px]">Group Training</p>
+              </div>
+              <div className="flex flex-col font-['Assistant:Regular'] font-normal justify-center relative shrink-0 text-[14px] w-full" data-node-id="I1130:21050;481:1313">
+                <p className="leading-[normal]">Basic commands and socialization in a group setting.</p>
+              </div>
+            </div>
+            <div className="bg-[#410075] content-stretch flex flex-col items-center justify-center p-[10px] relative rounded-[30px] shrink-0 w-[56px]" data-node-id="I1130:21050;481:1311">
+              <div className="[word-break:break-word] flex flex-col font-['Assistant:Bold'] font-bold h-[36px] justify-center leading-[0] relative shrink-0 text-[28px] text-center text-white uppercase w-full" data-node-id="I1130:21050;481:1310">
+                <p className="leading-[36px]">1</p>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex gap-[20px] items-center relative shrink-0 w-full" data-node-id="I1130:21050;481:1316">
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] relative shrink-0 text-[#252525] text-right w-[209px]" data-node-id="I1130:21050;481:1317">
+              <div className="capitalize flex flex-col font-['Assistant:Bold'] font-bold justify-center relative shrink-0 text-[20px] w-full" data-node-id="I1130:21050;481:1318">
+                <p className="leading-[26px]">Puppy Training</p>
+              </div>
+              <div className="flex flex-col font-['Assistant:Regular'] font-normal justify-center relative shrink-0 text-[14px] w-full" data-node-id="I1130:21050;481:1319">
+                <p className="leading-[normal]">Foundation skills for young dogs, including potty training and basic commands.</p>
+              </div>
+            </div>
+            <div className="bg-[#8b0004] content-stretch flex flex-col items-center justify-center p-[10px] relative rounded-[30px] shrink-0 w-[56px]" data-node-id="I1130:21050;481:1320">
+              <div className="[word-break:break-word] flex flex-col font-['Assistant:Bold'] font-bold h-[36px] justify-center leading-[0] relative shrink-0 text-[28px] text-center text-white uppercase w-full" data-node-id="I1130:21050;481:1321">
+                <p className="leading-[36px]">2</p>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex gap-[20px] items-center relative shrink-0 w-full" data-node-id="I1130:21050;481:1322">
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] relative shrink-0 text-[#252525] text-right w-[209px]" data-node-id="I1130:21050;481:1323">
+              <div className="capitalize flex flex-col font-['Assistant:Bold'] font-bold justify-center relative shrink-0 text-[20px] w-full" data-node-id="I1130:21050;481:1324">
+                <p className="leading-[26px]">Private Training</p>
+              </div>
+              <div className="flex flex-col font-['Assistant:Regular'] font-normal justify-center relative shrink-0 text-[14px] w-full" data-node-id="I1130:21050;481:1325">
+                <p className="leading-[normal]">Customized one-on-one sessions for specific needs.</p>
+              </div>
+            </div>
+            <div className="bg-[#410075] content-stretch flex flex-col items-center justify-center p-[10px] relative rounded-[30px] shrink-0 w-[56px]" data-node-id="I1130:21050;481:1326">
+              <div className="[word-break:break-word] flex flex-col font-['Assistant:Bold'] font-bold h-[36px] justify-center leading-[0] relative shrink-0 text-[28px] text-center text-white uppercase w-full" data-node-id="I1130:21050;481:1327">
+                <p className="leading-[36px]">3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute content-stretch flex flex-col gap-[121px] items-start left-[calc(75%-45px)] top-[calc(30%+97.8px)] w-[285px]" data-node-id="I1130:21050;481:1349">
+          <div className="content-stretch flex gap-[20px] items-center relative shrink-0 w-full" data-node-id="I1130:21050;481:1328">
+            <div className="bg-[#8b0004] content-stretch flex flex-col items-center justify-center p-[10px] relative rounded-[30px] shrink-0 w-[56px]" data-node-id="I1130:21050;481:1332">
+              <div className="[word-break:break-word] flex flex-col font-['Assistant:Bold'] font-bold h-[36px] justify-center leading-[0] relative shrink-0 text-[28px] text-center text-white uppercase w-full" data-node-id="I1130:21050;481:1333">
+                <p className="leading-[36px]">4</p>
+              </div>
+            </div>
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] relative shrink-0 text-[#252525] w-[209px]" data-node-id="I1130:21050;481:1329">
+              <div className="capitalize flex flex-col font-['Assistant:Bold'] font-bold justify-center relative shrink-0 text-[20px] w-full" data-node-id="I1130:21050;481:1330">
+                <p className="leading-[26px]">Specialty Program</p>
+              </div>
+              <div className="flex flex-col font-['Assistant:Regular'] font-normal justify-center relative shrink-0 text-[14px] w-full" data-node-id="I1130:21050;481:1331">
+                <p className="leading-[normal]">Specialized training, such as agility or therapy dog preparation.</p>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex gap-[20px] items-center relative shrink-0 w-full" data-node-id="I1130:21050;481:1334">
+            <div className="bg-[#410075] content-stretch flex flex-col items-center justify-center p-[10px] relative rounded-[30px] shrink-0 w-[56px]" data-node-id="I1130:21050;481:1335">
+              <div className="[word-break:break-word] flex flex-col font-['Assistant:Bold'] font-bold h-[36px] justify-center leading-[0] relative shrink-0 text-[28px] text-center text-white uppercase w-full" data-node-id="I1130:21050;481:1336">
+                <p className="leading-[36px]">5</p>
+              </div>
+            </div>
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] relative shrink-0 text-[#252525] w-[209px]" data-node-id="I1130:21050;481:1337">
+              <div className="capitalize flex flex-col font-['Assistant:Bold'] font-bold justify-center relative shrink-0 text-[20px] w-full" data-node-id="I1130:21050;481:1338">
+                <p className="leading-[26px]">Virtual Training</p>
+              </div>
+              <div className="flex flex-col font-['Assistant:Regular'] font-normal justify-center relative shrink-0 text-[14px] w-full" data-node-id="I1130:21050;481:1339">
+                <p className="leading-[normal]">Online sessions for convenient, at-home learning.</p>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex gap-[20px] items-center relative shrink-0 w-full" data-node-id="I1130:21050;481:1341">
+            <div className="bg-[#8b0004] content-stretch flex flex-col items-center justify-center p-[10px] relative rounded-[30px] shrink-0 w-[56px]" data-node-id="I1130:21050;481:1342">
+              <div className="[word-break:break-word] flex flex-col font-['Assistant:Bold'] font-bold h-[36px] justify-center leading-[0] relative shrink-0 text-[28px] text-center text-white uppercase w-full" data-node-id="I1130:21050;481:1343">
+                <p className="leading-[36px]">6</p>
+              </div>
+            </div>
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] relative shrink-0 text-[#252525] w-[209px]" data-node-id="I1130:21050;481:1344">
+              <div className="capitalize flex flex-col font-['Assistant:Bold'] font-bold justify-center relative shrink-0 text-[20px] w-full" data-node-id="I1130:21050;481:1345">
+                <p className="leading-[26px]">Security Program</p>
+              </div>
+              <div className="flex flex-col font-['Assistant:Regular'] font-normal justify-center relative shrink-0 text-[14px] w-full" data-node-id="I1130:21050;481:1346">
+                <p className="leading-[normal]">Training for protective roles, ensuring home safety.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="h-[1024px] overflow-clip relative shrink-0 w-[1440px]" data-node-id="I1130:21050;33:52" data-name="PetShop03">
+        <div className="absolute content-stretch flex flex-col gap-[20px] items-start left-[120px] overflow-clip top-[130px] w-[1200px]" data-node-id="I1130:21050;41:893">
+          <div className="content-stretch flex items-start relative shrink-0" data-node-id="I1130:21050;36:63">
+            <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[36px] relative shrink-0 text-[#252525] text-[28px] text-center uppercase whitespace-nowrap" data-node-id="I1130:21050;36:64">
+              Discovery
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[20px] items-center relative shrink-0" data-node-id="I1130:21050;36:147">
+            <div className="content-stretch flex items-start relative shrink-0" data-node-id="I1130:21050;36:131" data-name="Grow-normal">
+              <div className="bg-[#410075] content-stretch flex gap-[10px] h-[44px] items-center justify-center px-[30px] py-[10px] relative rounded-[5px] shrink-0 w-[147px]" data-node-id="I1130:21050;36:131;25:195" data-name="Grow">
+                <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0" data-node-id="I1130:21050;36:131;25:195;25:193">
+                  <p className="[word-break:break-word] font-['Assistant:SemiBold'] font-semibold leading-[22px] relative shrink-0 text-[18px] text-center text-white whitespace-nowrap" data-node-id="I1130:21050;36:131;25:195;25:189">
+                    Dogs
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex items-start relative shrink-0" data-node-id="I1130:21050;36:135" data-name="Grow-disable">
+              <div className="border border-[#727272] border-solid content-stretch flex gap-[10px] h-[44px] items-center justify-center px-[30px] py-[10px] relative rounded-[5px] shrink-0 w-[147px]" data-node-id="I1130:21050;36:135;25:226" data-name="Grow">
+                <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0" data-node-id="I1130:21050;36:135;25:226;1065:10494">
+                  <p className="[word-break:break-word] font-['Assistant:SemiBold'] font-semibold leading-[22px] relative shrink-0 text-[#727272] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;36:135;25:226;1065:10495">
+                    Cats
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex items-start relative shrink-0" data-node-id="I1130:21050;36:139" data-name="Grow-disable">
+              <div className="border border-[#727272] border-solid content-stretch flex gap-[10px] h-[44px] items-center justify-center px-[30px] py-[10px] relative rounded-[5px] shrink-0 w-[147px]" data-node-id="I1130:21050;36:139;25:226" data-name="Grow">
+                <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0" data-node-id="I1130:21050;36:139;25:226;1065:10494">
+                  <p className="[word-break:break-word] font-['Assistant:SemiBold'] font-semibold leading-[22px] relative shrink-0 text-[#727272] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;36:139;25:226;1065:10495">
+                    Hamsters
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex items-start relative shrink-0" data-node-id="I1130:21050;38:151" data-name="Grow-disable">
+              <div className="border border-[#727272] border-solid content-stretch flex gap-[10px] h-[44px] items-center justify-center px-[30px] py-[10px] relative rounded-[5px] shrink-0 w-[147px]" data-node-id="I1130:21050;38:151;25:226" data-name="Grow">
+                <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0" data-node-id="I1130:21050;38:151;25:226;1065:10494">
+                  <p className="[word-break:break-word] font-['Assistant:SemiBold'] font-semibold leading-[22px] relative shrink-0 text-[#727272] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;38:151;25:226;1065:10495">
+                    Birds
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex gap-[20px] items-center relative shrink-0 w-full" data-node-id="I1130:21050;41:1256">
+            <div className="bg-white border border-[#ccc] border-solid content-stretch flex flex-col gap-[20px] items-start justify-end overflow-clip p-[20px] relative rounded-[15px] shrink-0 w-[285px]" data-node-id="I1130:21050;41:262" data-name="Object">
+              <div className="content-stretch flex flex-col h-[197px] items-center justify-center p-[10px] relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:161">
+                <div className="relative shrink-0 size-[177px]" data-node-id="I1130:21050;41:262;41:159" data-name="image 4">
+                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage6} />
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0" data-node-id="I1130:21050;41:262;41:747">
+                <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:219">
+                  <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[36px] relative shrink-0 text-[#410075] text-[28px] text-center uppercase whitespace-nowrap" data-node-id="I1130:21050;41:262;41:189">
+                    CHIHUAHUA DOG
+                  </p>
+                </div>
+                <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0" data-node-id="I1130:21050;41:262;41:585">
+                  <div className="content-stretch flex items-center relative shrink-0 w-full" data-node-id="I1130:21050;41:262;41:182">
+                    <div className="content-stretch flex gap-[10px] items-center relative shrink-0" data-node-id="I1130:21050;41:262;41:229" data-name="Mexico">
+                      <div className="relative shrink-0 size-[18px]" data-node-id="I1130:21050;41:262;41:170" data-name="Earth">
+                        <div className="absolute inset-[6.25%]" data-node-id="I1130:21050;41:262;41:170;1074:13256" data-name="Ellipse 3 (Stroke)">
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse3Stroke} />
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[22px] relative shrink-0 text-[#595959] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;41:262;41:176">
+                        Mexico
+                      </p>
+                    </div>
+                  </div>
+                  <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:274">
+                    <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[22px] relative shrink-0 text-[#252525] text-[18px] whitespace-nowrap" data-node-id="I1130:21050;41:262;41:275">
+                      Information
+                    </p>
+                  </div>
+                  <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0" data-node-id="I1130:21050;41:262;41:366">
+                    <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:250">
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[18px] relative shrink-0 text-[#595959] text-[14px] whitespace-nowrap" data-node-id="I1130:21050;41:262;41:210">
+                        Difficulty in raising
+                      </p>
+                    </div>
+                    <div className="bg-[#ccc] h-[8px] overflow-clip relative rounded-[300px] shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:347">
+                      <div className="absolute h-[8px] left-0 rounded-[30px] top-0 w-[245px]" data-node-id="I1130:21050;41:262;41:348" />
+                      <div className="absolute bg-[#410075] h-[8px] left-0 rounded-[30px] top-0 w-[178px]" data-node-id="I1130:21050;41:262;41:349" />
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0" data-node-id="I1130:21050;41:262;41:384">
+                    <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:385">
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[18px] relative shrink-0 text-[#595959] text-[14px] whitespace-nowrap" data-node-id="I1130:21050;41:262;41:386">
+                        Ferocious
+                      </p>
+                    </div>
+                    <div className="bg-[#ccc] h-[8px] overflow-clip relative rounded-[300px] shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:387">
+                      <div className="absolute h-[8px] left-0 rounded-[30px] top-0 w-[245px]" data-node-id="I1130:21050;41:262;41:388" />
+                      <div className="absolute bg-[#410075] h-[8px] left-0 rounded-[30px] top-0 w-[224px]" data-node-id="I1130:21050;41:262;41:389" />
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0" data-node-id="I1130:21050;41:262;41:448">
+                    <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:449">
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[18px] relative shrink-0 text-[#595959] text-[14px] whitespace-nowrap" data-node-id="I1130:21050;41:262;41:450">
+                        Space
+                      </p>
+                    </div>
+                    <div className="bg-[#ccc] h-[8px] overflow-clip relative rounded-[300px] shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:451">
+                      <div className="absolute h-[8px] left-0 rounded-[30px] top-0 w-[245px]" data-node-id="I1130:21050;41:262;41:452" />
+                      <div className="absolute bg-[#410075] h-[8px] left-0 rounded-[30px] top-0 w-[178px]" data-node-id="I1130:21050;41:262;41:453" />
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0" data-node-id="I1130:21050;41:262;41:489">
+                    <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:490">
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[18px] relative shrink-0 text-[#595959] text-[14px] whitespace-nowrap" data-node-id="I1130:21050;41:262;41:491">
+                        Groups
+                      </p>
+                    </div>
+                    <div className="bg-[#ccc] h-[8px] overflow-clip relative rounded-[300px] shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;41:492">
+                      <div className="absolute h-[8px] left-0 rounded-[30px] top-0 w-[245px]" data-node-id="I1130:21050;41:262;41:493" />
+                      <div className="absolute bg-[#410075] h-[8px] left-0 rounded-[30px] top-0 w-[178px]" data-node-id="I1130:21050;41:262;41:494" />
+                    </div>
+                  </div>
+                  <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:262;428:336">
+                    <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[22px] relative shrink-0 text-[#252525] text-[18px] whitespace-nowrap" data-node-id="I1130:21050;41:262;428:337">
+                      Description
+                    </p>
+                  </div>
+                  <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal h-[72px] leading-[18px] min-w-full overflow-hidden relative shrink-0 text-[#595959] text-[14px] text-ellipsis w-[min-content]" data-node-id="I1130:21050;41:262;41:796">
+                    Chihuahuas are tiny dogs known for their large eyes and ears. They are lively, loyal, and often bond closely with their owners. Despite their small size, Chihuahuas can be bold and protective. They are well-suited for apartment living but need regular exercise and mental stimulatio
+                  </p>
+                </div>
+              </div>
+              <a className="[word-break:break-word] block cursor-pointer font-['Assistant:SemiBold'] font-semibold leading-[0] min-w-full relative shrink-0 text-[#410075] text-[16px] text-center w-[min-content]" data-node-id="I1130:21050;41:262;41:938">
+                <p className="[text-decoration-skip-ink:none] [text-underline-position:from-font] decoration-from-font decoration-solid leading-[normal] underline">Learn More</p>
+              </a>
+              <div className="absolute content-stretch flex flex-col items-center justify-center left-[calc(80%+13.6px)] size-[24px] top-[19px]" data-node-id="I1130:21050;41:262;41:1417" data-name="Heart">
+                <div className="h-[15px] relative shrink-0 w-[16.969px]" data-node-id="I1130:21050;41:262;41:1417;25:122">
+                  <div className="absolute inset-[-3.33%_-2.95%_-3.58%_-2.95%]">
+                    <img alt="" className="block max-w-none size-full" src={imgVector23} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white border border-[#ccc] border-solid content-stretch flex flex-col gap-[20px] items-start justify-end overflow-clip p-[20px] relative rounded-[15px] shrink-0 w-[285px]" data-node-id="I1130:21050;41:1257" data-name="Object">
+              <div className="content-stretch flex flex-col h-[197px] items-center justify-center p-[10px] relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:161">
+                <div className="relative shrink-0 size-[177px]" data-node-id="I1130:21050;41:1257;41:159" data-name="image 4">
+                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage7} />
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0" data-node-id="I1130:21050;41:1257;41:747">
+                <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:219">
+                  <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[36px] relative shrink-0 text-[#410075] text-[28px] text-center uppercase whitespace-nowrap" data-node-id="I1130:21050;41:1257;41:189">
+                    DACHSHUND DOG
+                  </p>
+                </div>
+                <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0" data-node-id="I1130:21050;41:1257;41:585">
+                  <div className="content-stretch flex items-center relative shrink-0 w-full" data-node-id="I1130:21050;41:1257;41:182">
+                    <div className="content-stretch flex gap-[10px] items-center relative shrink-0" data-node-id="I1130:21050;41:1257;41:229" data-name="Mexico">
+                      <div className="relative shrink-0 size-[18px]" data-node-id="I1130:21050;41:1257;41:170" data-name="Earth">
+                        <div className="absolute inset-[6.25%]" data-node-id="I1130:21050;41:1257;41:170;1074:13256" data-name="Ellipse 3 (Stroke)">
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse3Stroke} />
+                        </div>
+                      </div>
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[22px] relative shrink-0 text-[#595959] text-[18px] text-center whitespace-nowrap" data-node-id="I1130:21050;41:1257;41:176">
+                        Germany
+                      </p>
+                    </div>
+                  </div>
+                  <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:274">
+                    <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[22px] relative shrink-0 text-[#252525] text-[18px] whitespace-nowrap" data-node-id="I1130:21050;41:1257;41:275">
+                      Information
+                    </p>
+                  </div>
+                  <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0" data-node-id="I1130:21050;41:1257;41:366">
+                    <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:250">
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[18px] relative shrink-0 text-[#595959] text-[14px] whitespace-nowrap" data-node-id="I1130:21050;41:1257;41:210">
+                        Difficulty in raising
+                      </p>
+                    </div>
+                    <div className="bg-[#ccc] h-[8px] overflow-clip relative rounded-[300px] shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:347">
+                      <div className="absolute h-[8px] left-0 rounded-[30px] top-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:348" />
+                      <div className="absolute bg-[#410075] h-[8px] left-0 rounded-[30px] top-0 w-[178px]" data-node-id="I1130:21050;41:1257;41:349" />
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0" data-node-id="I1130:21050;41:1257;41:384">
+                    <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:385">
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[18px] relative shrink-0 text-[#595959] text-[14px] whitespace-nowrap" data-node-id="I1130:21050;41:1257;41:386">
+                        Ferocious
+                      </p>
+                    </div>
+                    <div className="bg-[#ccc] h-[8px] overflow-clip relative rounded-[300px] shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:387">
+                      <div className="absolute h-[8px] left-0 rounded-[30px] top-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:388" />
+                      <div className="absolute bg-[#410075] h-[8px] left-0 rounded-[30px] top-0 w-[224px]" data-node-id="I1130:21050;41:1257;41:389" />
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0" data-node-id="I1130:21050;41:1257;41:448">
+                    <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:449">
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[18px] relative shrink-0 text-[#595959] text-[14px] whitespace-nowrap" data-node-id="I1130:21050;41:1257;41:450">
+                        Space
+                      </p>
+                    </div>
+                    <div className="bg-[#ccc] h-[8px] overflow-clip relative rounded-[300px] shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:451">
+                      <div className="absolute h-[8px] left-0 rounded-[30px] top-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:452" />
+                      <div className="absolute bg-[#410075] h-[8px] left-0 rounded-[30px] top-0 w-[178px]" data-node-id="I1130:21050;41:1257;41:453" />
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0" data-node-id="I1130:21050;41:1257;41:489">
+                    <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:490">
+                      <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal leading-[18px] relative shrink-0 text-[#595959] text-[14px] whitespace-nowrap" data-node-id="I1130:21050;41:1257;41:491">
+                        Groups
+                      </p>
+                    </div>
+                    <div className="bg-[#ccc] h-[8px] overflow-clip relative rounded-[300px] shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:492">
+                      <div className="absolute h-[8px] left-0 rounded-[30px] top-0 w-[245px]" data-node-id="I1130:21050;41:1257;41:493" />
+                      <div className="absolute bg-[#410075] h-[8px] left-0 rounded-[30px] top-0 w-[178px]" data-node-id="I1130:21050;41:1257;41:494" />
+                    </div>
+                  </div>
+                  <div className="content-stretch flex items-center relative shrink-0 w-[245px]" data-node-id="I1130:21050;41:1257;428:336">
+                    <p className="[word-break:break-word] font-['Assistant:Bold'] font-bold leading-[22px] relative shrink-0 text-[#252525] text-[18px] whitespace-nowrap" data-node-id="I1130:21050;41:1257;428:337">
+                      Description
+                    </p>
+                  </div>
+                  <p className="[word-break:break-word] font-['Assistant:Regular'] font-normal h-[72px] leading-[18px] min-w-full overflow-hidden r

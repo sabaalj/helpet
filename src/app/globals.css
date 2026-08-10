@@ -3,25 +3,52 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-assistant: "Assistant";
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #252525; /* Neutral/800 */
+  background: #ffffff;
+  font-family: var(--font-assistant), Assistant, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  /* 20px-Tittle/UpperCase — section eyebrow titles */
+  .section-eyebrow {
+    @apply text-[20px] font-bold leading-[26px] tracking-title uppercase text-purple-3;
   }
+
+  /* Figma floating-label input (label sits on the border line) */
+  .field {
+    @apply relative w-full;
+  }
+  .field-input {
+    @apply w-full rounded-btn border border-neutral-200 bg-white px-[20px] py-[15px] text-content-18 text-neutral-800 outline-none transition-colors placeholder:text-neutral-300 focus:border-purple-1;
+  }
+  .field-label {
+    @apply pointer-events-none absolute -top-[8px] left-[15px] bg-white px-[5px] text-desc-12 leading-[12px] text-neutral-600;
+  }
+
+  .btn-primary {
+    @apply inline-flex h-[44px] items-center justify-center gap-[10px] rounded-btn bg-purple-3 px-[30px] text-content-18 font-bold text-white transition-all duration-300 hover:bg-purple-2 active:scale-[0.98];
+  }
+  .btn-outline {
+    @apply inline-flex h-[44px] items-center justify-center gap-[10px] rounded-btn border border-purple-3 bg-white px-[30px] text-content-18 font-bold text-purple-3 transition-all duration-300 hover:bg-purple-5 active:scale-[0.98];
+  }
+}
+
+/* thin scrollbar like premium sites */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e5c3ff;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f8f8f8;
 }
