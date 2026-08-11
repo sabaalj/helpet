@@ -61,7 +61,7 @@ export default function FilterBar({
               placeholder="All"
               value={values[s.key] ?? ""}
               onChange={(v) => onSelect(s.key, v)}
-              className="w-[190px]"
+              className="filter-field w-[190px]"
             />
           ))}
         </div>
