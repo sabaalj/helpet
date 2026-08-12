@@ -35,7 +35,7 @@ export default function FilterBar({
         <Funnel size={20} weight="bold" />
         <span className="text-content-18 font-bold">Filters</span>
       </div>
-      <div className="flex flex-wrap items-center gap-[15px]">
+      <div className="flex flex-wrap items-center gap-x-[15px] gap-y-[22px]">
         <div className="flex flex-wrap gap-[10px]">
           {["All", ...typeTabs].map((t) => (
             <button
@@ -52,7 +52,7 @@ export default function FilterBar({
             </button>
           ))}
         </div>
-        <div className="ml-auto flex flex-wrap gap-[15px]">
+        <div className="ml-auto flex w-full flex-wrap gap-x-[15px] gap-y-[22px] sm:w-auto">
           {selects.map((s) => (
             <SelectField
               key={s.key}
@@ -61,7 +61,7 @@ export default function FilterBar({
               placeholder="All"
               value={values[s.key] ?? ""}
               onChange={(v) => onSelect(s.key, v)}
-              className="filter-field w-[190px]"
+              className="w-full sm:w-[190px]"
             />
           ))}
         </div>

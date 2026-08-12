@@ -7,6 +7,7 @@ import {
   SelectField,
   TextareaField,
 } from "@/components/ui/fields";
+import HappyDogIllustration from "@/components/decor/HappyDogIllustration";
 import { CITIES, PET_TYPES } from "@/data/content";
 
 export default function CreateBreedingRequestPage() {
@@ -33,9 +34,11 @@ export default function CreateBreedingRequestPage() {
       }}
       success={{
         message:
-          "Your breeding request is live! Owners with matching pets will contact you directly on the number you provided.",
+          "Thank you! Your breeding request has been published and is ready to be discovered by other pet owners — matches will contact you directly on the number you provided.",
         backHref: "/breeding",
         backLabel: "Back to Breeding Requests",
+        illustration: <HappyDogIllustration className="h-full w-full" />,
+        decorate: true,
       }}
     >
       <FormSection title="Pet Information">
