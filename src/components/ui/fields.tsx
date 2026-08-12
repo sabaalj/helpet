@@ -16,8 +16,6 @@ interface BaseProps {
   className?: string;
   name?: string;
   type?: string;
-  value?: string;
-  onChange?: (value: string) => void;
 }
 
 export function Field({
@@ -27,8 +25,6 @@ export function Field({
   className,
   name,
   type = "text",
-  value,
-  onChange,
 }: BaseProps) {
   return (
     <label className={cn("field block", className)}>
@@ -38,8 +34,6 @@ export function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange?.(e.target.value)}
         className="field-input"
       />
     </label>
@@ -95,8 +89,6 @@ export function TextareaField({
   className,
   name,
   rows = 4,
-  value,
-  onChange,
 }: BaseProps & { rows?: number }) {
   return (
     <label className={cn("field block", className)}>
@@ -105,8 +97,6 @@ export function TextareaField({
         name={name}
         rows={rows}
         placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange?.(e.target.value)}
         className="field-input resize-none"
       />
     </label>
