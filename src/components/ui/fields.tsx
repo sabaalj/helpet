@@ -16,6 +16,9 @@ interface BaseProps {
   className?: string;
   name?: string;
   type?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+
 }
 
 export function Field({
@@ -25,6 +28,8 @@ export function Field({
   className,
   name,
   type = "text",
+  value,
+  onChange,
 }: BaseProps) {
   return (
     <label className={cn("field block", className)}>
@@ -35,6 +40,8 @@ export function Field({
         required={required}
         placeholder={placeholder}
         className="field-input"
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
       />
     </label>
   );

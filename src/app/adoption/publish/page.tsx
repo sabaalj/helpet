@@ -44,11 +44,8 @@ export default function PublishAdoptionPage() {
     adoptionReason: "",
   });
 
-  const [vaccinationRecord, setVaccinationRecord] =
-    useState<File | null>(null);
-
-  const [medicalRecord, setMedicalRecord] =
-    useState<File | null>(null);
+  const [, setVaccinationRecord] = useState<File | null>(null);
+  const [, setMedicalRecord] = useState<File | null>(null);
 
   const checklist = [
     form.name.trim() ? "✓ Pet name added" : "Missing: Pet name",

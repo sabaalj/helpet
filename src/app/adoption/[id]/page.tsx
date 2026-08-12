@@ -19,17 +19,19 @@ export default function AdoptionDetailsPage() {
     return (
       <main className="min-h-screen bg-purple-5/40">
         <div className="mx-auto max-w-[1200px] px-[24px] py-[100px] text-center">
-          <h1 className="text-display-36 font-bold uppercase text-purple-3">
-            Pet not found
-          </h1>
+          <div className="mx-auto max-w-[650px] rounded-[20px] border border-purple-4/40 bg-white px-[30px] py-[60px] shadow-card">
+            <h1 className="text-display-36 font-bold uppercase text-purple-3">
+              Pet not found
+            </h1>
 
-          <p className="mt-[10px] text-neutral-600">
-            This adoption listing may no longer be available.
-          </p>
+            <p className="mt-[10px] text-neutral-600">
+              This adoption listing may no longer be available.
+            </p>
 
-          <Link href="/adoption" className="btn-primary mt-[25px]">
-            Back to Adoption List
-          </Link>
+            <Link href="/adoption" className="btn-primary mt-[25px]">
+              Back to Adoption List
+            </Link>
+          </div>
         </div>
       </main>
     );
@@ -80,7 +82,7 @@ export default function AdoptionDetailsPage() {
         </Link>
 
         {/* MAGAZINE PAGE */}
-        <article className="mx-auto max-w-[1100px] overflow-hidden border border-purple-4/30 bg-white shadow-[0_25px_80px_rgba(75,35,110,0.14)]">
+        <article className="mx-auto max-w-[1100px] overflow-hidden rounded-[22px] border border-purple-4/40 bg-white shadow-[0_20px_55px_rgba(75,35,110,0.12)]">
           {/* MASTHEAD */}
           <header className="border-b border-purple-4/40 px-[28px] py-[18px] md:px-[55px]">
             <div className="flex flex-wrap items-center justify-between gap-[10px]">
@@ -96,7 +98,6 @@ export default function AdoptionDetailsPage() {
 
           {/* HERO */}
           <section className="relative overflow-hidden bg-[#F8F1FF] px-[28px] pb-[65px] pt-[50px] md:px-[55px] md:pb-[75px] md:pt-[60px]">
-            {/* Paw decorations */}
             <PawPrint
               size={125}
               weight="fill"
@@ -111,16 +112,12 @@ export default function AdoptionDetailsPage() {
               className="absolute left-[10px] top-[20px] rotate-[15deg] text-purple-4/25"
             />
 
-            {/* Top-right lavender circle */}
             <div
               aria-hidden
               className="absolute -right-[105px] -top-[110px] size-[250px] rounded-full bg-purple-4/25"
             />
 
-            {/*
-              Softer bottom circles:
-              larger + thinner + lighter so they fade into the next section
-            */}
+            {/* Softer bottom decorative circles */}
             <div
               aria-hidden
               className="absolute -bottom-[150px] -left-[120px] size-[280px] rounded-full border-[3px] border-purple-4/15"
@@ -141,7 +138,7 @@ export default function AdoptionDetailsPage() {
                 {pet.name} {pet.type}
               </h1>
 
-              <div className="mx-auto mt-[16px] h-[3px] w-[65px] bg-purple-3" />
+              <div className="mx-auto mt-[16px] h-[3px] w-[65px] rounded-full bg-purple-3" />
             </div>
 
             {/* PET + SNAPSHOT */}
@@ -154,7 +151,7 @@ export default function AdoptionDetailsPage() {
                   className="relative z-10 max-h-[420px] max-w-full object-contain drop-shadow-[0_18px_18px_rgba(60,30,90,0.13)]"
                 />
 
-                <span className="absolute bottom-[5px] right-[5px] z-20 bg-green-5 px-[15px] py-[7px] text-desc-12 font-bold uppercase tracking-[0.08em] text-white">
+                <span className="absolute bottom-[5px] right-[5px] z-20 rounded-full bg-green-5 px-[15px] py-[7px] text-desc-12 font-bold uppercase tracking-[0.08em] text-white">
                   {pet.type} • Adoption
                 </span>
               </div>
@@ -219,9 +216,11 @@ export default function AdoptionDetailsPage() {
                 <nav className="flex flex-col">
                   <SideLink href="#profile">Pet Profile</SideLink>
                   <SideLink href="#health">Health & Wellness</SideLink>
+
                   <SideLink href="#behavior">
                     Behavior & Temperament
                   </SideLink>
+
                   <SideLink href="#care">Daily Life & Care</SideLink>
                   <SideLink href="#story">Their Story</SideLink>
                   <SideLink href="#documents">Documents</SideLink>
@@ -256,8 +255,6 @@ export default function AdoptionDetailsPage() {
                     value={pet.vaccinated ? "Yes" : "No"}
                   />
                 </div>
-
-                
               </div>
             </aside>
 
@@ -306,7 +303,7 @@ export default function AdoptionDetailsPage() {
                 Additional Information
               </h2>
 
-              <div className="mt-[14px] h-[3px] w-[65px] bg-green-5" />
+              <div className="mt-[14px] h-[3px] w-[65px] rounded-full bg-green-5" />
 
               <p className="mt-[18px] text-content-18 font-semibold leading-[28px] text-neutral-700">
                 Health, personality, daily care and background details can help
@@ -324,7 +321,8 @@ export default function AdoptionDetailsPage() {
             intro={`A closer look at ${pet.name}'s current health and medical information.`}
           >
             <div className="grid gap-[25px] md:grid-cols-2">
-              <div className="border-l-[4px] border-green-5 bg-purple-5/50 p-[26px]">
+              {/* VACCINATION CARD */}
+              <div className="rounded-[16px] border border-purple-4/40 border-l-[4px] border-l-green-5 bg-purple-5/50 p-[26px] shadow-[0_6px_18px_rgba(75,35,110,0.05)]">
                 <p className="text-desc-12 font-bold uppercase tracking-[0.13em] text-neutral-500">
                   Vaccination Status
                 </p>
@@ -334,7 +332,8 @@ export default function AdoptionDetailsPage() {
                 </p>
               </div>
 
-              <div className="border-l-[4px] border-purple-3 bg-white p-[26px]">
+              {/* HEALTH CARD */}
+              <div className="rounded-[16px] border border-purple-4/40 border-l-[4px] border-l-purple-3 bg-white p-[26px] shadow-[0_6px_18px_rgba(75,35,110,0.05)]">
                 <p className="text-desc-12 font-bold uppercase tracking-[0.13em] text-neutral-500">
                   Health Condition
                 </p>
@@ -389,7 +388,7 @@ export default function AdoptionDetailsPage() {
                   & Care
                 </h2>
 
-                <div className="mt-[15px] h-[3px] w-[65px] bg-green-5" />
+                <div className="mt-[15px] h-[3px] w-[65px] rounded-full bg-green-5" />
 
                 <p className="mt-[18px] max-w-[400px] text-content-18 leading-[28px] text-neutral-600">
                   Food, living environment and special care can all play an
@@ -397,12 +396,14 @@ export default function AdoptionDetailsPage() {
                 </p>
               </div>
 
-              <div className="grid gap-x-[45px] gap-y-[35px] sm:grid-cols-2">
-                <InfoBlock label="Current Food" value="—" />
-                <InfoBlock label="Indoor / Outdoor" value="—" />
+              <div className="rounded-[18px] border border-purple-4/30 bg-white/75 p-[28px] shadow-[0_6px_18px_rgba(75,35,110,0.05)]">
+                <div className="grid gap-x-[45px] gap-y-[35px] sm:grid-cols-2">
+                  <InfoBlock label="Current Food" value="—" />
+                  <InfoBlock label="Indoor / Outdoor" value="—" />
 
-                <div className="sm:col-span-2">
-                  <InfoBlock label="Special Needs" value="—" />
+                  <div className="sm:col-span-2">
+                    <InfoBlock label="Special Needs" value="—" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -434,17 +435,21 @@ export default function AdoptionDetailsPage() {
                 place to call home.
               </p>
 
-              <div className="mx-auto mt-[15px] h-[3px] w-[65px] bg-green-5" />
+              <div className="mx-auto mt-[15px] h-[3px] w-[65px] rounded-full bg-green-5" />
             </div>
 
-            <div className="relative z-10 mt-[48px] grid gap-[45px] md:grid-cols-2">
-              <StoryBlock label="Background" value="—" />
-              <StoryBlock label="Reason for Adoption" value="—" />
+            <div className="relative z-10 mt-[48px] grid gap-[25px] md:grid-cols-2">
+              <StoryCard label="Background" value="—" />
+
+              <StoryCard
+                label="Reason for Adoption"
+                value="—"
+              />
             </div>
           </section>
 
           {/* FEATURE BANNER */}
-          <section className="relative mx-[32px] my-[25px] overflow-hidden bg-purple-3 px-[35px] py-[55px] md:mx-[55px] md:px-[55px] md:py-[65px]">
+          <section className="relative mx-[32px] my-[25px] overflow-hidden rounded-[20px] bg-purple-3 px-[35px] py-[55px] shadow-[0_12px_30px_rgba(75,35,110,0.15)] md:mx-[55px] md:px-[55px] md:py-[65px]">
             <PawPrint
               size={185}
               weight="fill"
@@ -496,7 +501,7 @@ export default function AdoptionDetailsPage() {
                 listing.
               </p>
 
-              <div className="mt-[15px] h-[3px] w-[65px] bg-green-5" />
+              <div className="mt-[15px] h-[3px] w-[65px] rounded-full bg-green-5" />
             </div>
 
             <div className="mt-[42px] grid gap-[25px] md:grid-cols-2">
@@ -513,7 +518,7 @@ export default function AdoptionDetailsPage() {
           </section>
 
           {/* FINAL CTA */}
-          <section className="relative overflow-hidden bg-purple-5/80 px-[32px] py-[70px] text-center md:px-[55px] md:py-[85px]">
+          <section className="relative mx-[20px] mb-[20px] overflow-hidden rounded-[20px] bg-purple-5/80 px-[32px] py-[70px] text-center md:mx-[28px] md:px-[55px] md:py-[85px]">
             <PawPrint
               size={100}
               weight="fill"
@@ -573,7 +578,9 @@ export default function AdoptionDetailsPage() {
   );
 }
 
-/* REUSABLE COMPONENTS */
+/* ─────────────────────────────────────────────
+   REUSABLE COMPONENTS
+───────────────────────────────────────────── */
 
 function SideLink({
   href,
@@ -665,10 +672,12 @@ function MagazineArticleSection({
           </p>
         )}
 
-        <div className="mt-[15px] h-[3px] w-[65px] bg-green-5" />
+        <div className="mt-[15px] h-[3px] w-[65px] rounded-full bg-green-5" />
       </div>
 
-      <div className="mt-[42px]">{children}</div>
+      <div className="mt-[42px]">
+        {children}
+      </div>
     </section>
   );
 }
@@ -693,7 +702,7 @@ function InfoBlock({
   );
 }
 
-function StoryBlock({
+function StoryCard({
   label,
   value,
 }: {
@@ -701,8 +710,10 @@ function StoryBlock({
   value: string;
 }) {
   return (
-    <div className="border-t-[3px] border-green-5 pt-[17px]">
-      <p className="text-desc-12 font-bold uppercase tracking-[0.13em] text-neutral-500">
+    <div className="rounded-[16px] border border-purple-4/40 bg-purple-5/20 p-[26px] shadow-[0_6px_18px_rgba(75,35,110,0.04)]">
+      <div className="h-[3px] w-[45px] rounded-full bg-green-5" />
+
+      <p className="mt-[17px] text-desc-12 font-bold uppercase tracking-[0.13em] text-neutral-500">
         {label}
       </p>
 
@@ -718,11 +729,13 @@ function MagazineDivider() {
     <div className="flex items-center gap-[15px] px-[32px] md:px-[55px]">
       <span className="h-px flex-1 bg-purple-4/50" />
 
-      <PawPrint
-        size={24}
-        weight="fill"
-        className="rotate-[15deg] text-purple-4"
-      />
+      <span className="flex size-[34px] items-center justify-center rounded-full bg-purple-5">
+        <PawPrint
+          size={19}
+          weight="fill"
+          className="rotate-[15deg] text-purple-4"
+        />
+      </span>
 
       <span className="h-px flex-1 bg-purple-4/50" />
     </div>
@@ -737,9 +750,9 @@ function DocumentCard({
   description: string;
 }) {
   return (
-    <div className="group border border-purple-4/50 bg-purple-5/25 p-[25px] transition-all duration-300 hover:border-purple-3 hover:bg-purple-5/50">
+    <div className="group rounded-[16px] border border-purple-4/50 bg-purple-5/25 p-[25px] shadow-[0_6px_18px_rgba(75,35,110,0.05)] transition-all duration-300 hover:-translate-y-[2px] hover:border-purple-3 hover:bg-purple-5/50 hover:shadow-card">
       <div className="flex items-start gap-[15px]">
-        <span className="flex size-[48px] shrink-0 items-center justify-center bg-purple-3 text-white">
+        <span className="flex size-[48px] shrink-0 items-center justify-center rounded-[12px] bg-purple-3 text-white">
           <FileText size={23} weight="bold" />
         </span>
 
