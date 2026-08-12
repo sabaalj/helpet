@@ -11,7 +11,14 @@ import type { AdoptionPet } from "@/data/content";
 import PetPhoto from "./PetPhoto";
 import { cn } from "@/lib/utils";
 
+import Link from "next/link";
+import { useState } from "react"; 
+
 export default function AdoptionCard({ pet }: { pet: AdoptionPet }) {
+
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
+
   return (
     <article className="flex h-full flex-col gap-[15px] rounded-card border border-purple-4/60 bg-white p-[15px] shadow-card transition-shadow hover:shadow-panel">
       <div className="relative">
@@ -28,10 +35,22 @@ export default function AdoptionCard({ pet }: { pet: AdoptionPet }) {
           {pet.vaccinated ? "Vaccinated" : "Needs vaccines"}
         </span>
         <button
-          aria-label="Save to favorites"
-          className="absolute right-[10px] top-[10px] flex size-[32px] items-center justify-center rounded-full bg-white text-red-2 shadow-chip transition-transform hover:scale-110"
+          type="button"
+          aria-label={liked ? "Remove from favorites" : "Save to favorites"}
+          onClick={() => {
+            setLiked((prev) => !prev);
+            setLikes((prev) => (liked ? prev - 1 : prev + 1));
+          }}
+          className="absolute right-[10px] top-[10px] flex h-[32px] items-center gap-[5px] rounded-full bg-white px-[9px] text-red-2 shadow-chip transition-all hover:scale-105"
         >
-          <Heart size={18} />
+          <Heart
+            size={18}
+            weight={liked ? "fill" : "regular"}
+          />
+
+          <span className="text-desc-12 font-bold">
+            {likes}
+          </span>
         </button>
       </div>
 
@@ -69,12 +88,21 @@ export default function AdoptionCard({ pet }: { pet: AdoptionPet }) {
         </p>
       </div>
 
-      <a
-        href={`tel:${pet.phone.replace(/\s/g, "")}`}
-        className="btn-primary mt-auto w-full"
-      >
-        Contact Publisher
-      </a>
+      <div className="mt-auto grid grid-cols-2 gap-[10px]">
+        <Link
+          href={`/adoption/${pet.id}`}
+          className="btn-outline w-full px-[12px] text-small-14"
+        >
+          View Details
+        </Link>
+
+        <a
+          href={`tel:${pet.phone.replace(/\s/g, "")}`}
+          className="btn-primary w-full px-[12px] text-small-14"
+        >
+          Contact Publisher
+        </a>
+      </div>
     </article>
   );
 }
