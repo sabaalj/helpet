@@ -18,7 +18,6 @@ interface BaseProps {
   type?: string;
   value?: string;
   onChange?: (value: string) => void;
-
 }
 
 export function Field({
@@ -39,9 +38,9 @@ export function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="field-input"
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
+        className="field-input"
       />
     </label>
   );
@@ -96,6 +95,8 @@ export function TextareaField({
   className,
   name,
   rows = 4,
+  value,
+  onChange,
 }: BaseProps & { rows?: number }) {
   return (
     <label className={cn("field block", className)}>
@@ -104,6 +105,8 @@ export function TextareaField({
         name={name}
         rows={rows}
         placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
         className="field-input resize-none"
       />
     </label>
@@ -160,55 +163,6 @@ export function PhotoUpload({
             setFileName(f.name);
             setPreview(URL.createObjectURL(f));
           }
-        }}
-      />
-    </div>
-  );
-}
-export function DocumentUpload({
-  label,
-  className,
-  onChange,
-}: {
-  label: string;
-  className?: string;
-  onChange?: (file: File | null) => void;
-}) {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [fileName, setFileName] = useState<string | null>(null);
-
-  return (
-    <div className={cn("field", className)}>
-      <span className="field-label z-10">{label}</span>
-
-      <button
-        type="button"
-        onClick={() => inputRef.current?.click()}
-        className="flex min-h-[120px] w-full flex-col items-center justify-center gap-[8px] rounded-btn border border-dashed border-purple-4 bg-purple-5/40 px-[20px] py-[20px] transition-colors hover:border-purple-1 hover:bg-purple-5"
-      >
-        <span className="flex size-[40px] items-center justify-center rounded-full bg-purple-4 text-purple-3">
-          <UploadSimple size={20} weight="bold" />
-        </span>
-
-        <span className="text-small-14 font-semibold text-purple-3">
-          {fileName ?? "Click to upload document"}
-        </span>
-
-        <span className="text-desc-12 text-neutral-600">
-          JPG, PNG or PDF
-        </span>
-      </button>
-
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/jpeg,image/png,application/pdf"
-        className="hidden"
-        onChange={(e) => {
-          const file = e.target.files?.[0] ?? null;
-
-          setFileName(file?.name ?? null);
-          onChange?.(file);
         }}
       />
     </div>

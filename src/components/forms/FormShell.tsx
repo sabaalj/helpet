@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { CheckCircle, Info } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
-import PawTrail from "@/components/decor/PawTrail";
 
 /**
  * Form page shell — Figma Checkout pattern: numbered stepper,
@@ -111,38 +110,24 @@ export function SuccessState({
   message,
   backHref,
   backLabel,
-  illustration,
-  decorate,
 }: {
   message: string;
   backHref: string;
   backLabel: string;
-  /** Optional happy-animal illustration shown above the checkmark. */
-  illustration?: React.ReactNode;
-  /** Opt-in paw-print arch behind the card — kept off by default so other
-   * forms sharing this component are unaffected. */
-  decorate?: boolean;
 }) {
   return (
-    <div className="relative mx-auto max-w-[680px]">
-      {decorate && <PawTrail variant="arch" className="-z-10" />}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="relative mx-auto flex max-w-[560px] flex-col items-center gap-[20px] rounded-card bg-white p-[50px] text-center shadow-panel"
-      >
-        {illustration ? (
-          <div className="h-[120px] w-[132px]">{illustration}</div>
-        ) : (
-          <CheckCircle size={80} weight="fill" className="text-green-4" />
-        )}
-        <h2 className="text-header-28 font-bold text-purple-3">Published!</h2>
-        <p className="text-content-18 text-neutral-700">{message}</p>
-        <Link href={backHref} className="btn-primary">
-          {backLabel}
-        </Link>
-      </motion.div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="mx-auto flex max-w-[560px] flex-col items-center gap-[20px] rounded-card bg-white p-[50px] text-center shadow-panel"
+    >
+      <CheckCircle size={80} weight="fill" className="text-green-4" />
+      <h2 className="text-header-28 font-bold text-purple-3">Published!</h2>
+      <p className="text-content-18 text-neutral-700">{message}</p>
+      <Link href={backHref} className="btn-primary">
+        {backLabel}
+      </Link>
+    </motion.div>
   );
 }
 

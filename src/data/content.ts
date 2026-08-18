@@ -297,66 +297,6 @@ export const BREEDING_REQUESTS: BreedingRequest[] = [
       "Standard smooth dachshund with excellent temperament. PRA clear, back x-rays perfect. Proven sire.",
     phone: "+966 59 424 8282",
   },
-  {
-    id: "br-5",
-    photo: "/assets/breeding/golden-retriever.jpg",
-    type: "Dog",
-    breed: "Golden Retriever",
-    age: "3 years",
-    gender: "Female",
-    city: "Mecca",
-    description:
-      "Friendly, health-tested golden with hip/elbow scores on file. Vaccinated and dewormed. Seeking a calm, registered male.",
-    phone: "+966 55 767 3939",
-  },
-  {
-    id: "br-6",
-    photo: "/assets/breeding/british-shorthair.jpg",
-    type: "Cat",
-    breed: "British Shorthair",
-    age: "2 years",
-    gender: "Male",
-    city: "Medina",
-    description:
-      "Blue British Shorthair, GCCF registered, health screened (HCM clear). Looking for a matching pedigree female.",
-    phone: "+966 57 282 6060",
-  },
-  {
-    id: "br-7",
-    photo: "/assets/breeding/syrian-hamster.jpg",
-    type: "Hamster",
-    breed: "Syrian Hamster",
-    age: "6 months",
-    gender: "Female",
-    city: "Riyadh",
-    description:
-      "Golden Syrian hamster, calm and hand-tame, from a healthy line. Kept solo per species needs. Looking for a similarly gentle-tempered male.",
-    phone: "+966 50 313 4747",
-  },
-  {
-    id: "br-8",
-    photo: "/assets/breeding/dwarf-hamster.jpg",
-    type: "Hamster",
-    breed: "Dwarf Hamster",
-    age: "8 months",
-    gender: "Male",
-    city: "Jeddah",
-    description:
-      "Winter White dwarf hamster, active and healthy, no history of illness. Seeking a compatible dwarf female for a supervised, well-researched pairing.",
-    phone: "+966 54 828 1919",
-  },
-  {
-    id: "br-9",
-    photo: "/assets/breeding/cockatiel.jpg",
-    type: "Bird",
-    breed: "Cockatiel",
-    age: "1.5 years",
-    gender: "Male",
-    city: "Dammam",
-    description:
-      "Hand-raised grey cockatiel, whistles and steps up readily, DNA sexed. Vet checked and eating well. Looking for a healthy, DNA-sexed hen.",
-    phone: "+966 56 646 5252",
-  },
 ];
 
 /* ── Pet News ─────────────────────────────────────────────── */

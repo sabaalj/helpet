@@ -2,17 +2,175 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import {
+  browserLocalPersistence,
+  browserSessionPersistence,
+  sendEmailVerification,
+  setPersistence,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+
 import AuthLayout, {
   AuthAside,
   AuthPanel,
   SocialButtons,
 } from "@/components/forms/AuthLayout";
 import { Field } from "@/components/ui/fields";
+import { auth } from "@/lib/firebase";
 
-const AVATARS = ["/assets/hero-avatar-1.png", "/assets/hero-avatar-2.png", "/assets/avatar-user.png"];
+const AVATARS = [
+  "/assets/hero-avatar-1.png",
+  "/assets/hero-avatar-2.png",
+  "/assets/avatar-user.png",
+];
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function LoginPage() {
   const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(true);
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // Shown when the credentials were correct but the email isn't verified.
+  const [needsVerification, setNeedsVerification] = useState(false);
+  const [resendState, setResendState] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
+  const [resendError, setResendError] = useState("");
+
+  const handleResend = async () => {
+    if (resendState === "sending" || loading) return;
+
+    setResendState("sending");
+    setResendError("");
+
+    try {
+      // The session was dropped after the failed check, so sign in briefly
+      // to get a User object, send the link, then sign out again.
+      const credential = await signInWithEmailAndPassword(
+        auth,
+        email.trim(),
+        password
+      );
+
+      await sendEmailVerification(credential.user);
+      await signOut(auth);
+
+      setResendState("sent");
+    } catch (err: unknown) {
+      console.error(err);
+
+      const code =
+        typeof err === "object" && err !== null && "code" in err
+          ? String((err as { code?: string }).code)
+          : "";
+
+      setResendState("error");
+      setResendError(
+        code === "auth/too-many-requests"
+          ? "Too many requests. Wait a few minutes before asking for another email."
+          : "Couldn't send the email. Please try again."
+      );
+    }
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Block duplicate submissions while a sign-in is already in flight.
+    if (loading) return;
+
+    setError("");
+    setNeedsVerification(false);
+    setResendState("idle");
+
+    const mail = email.trim();
+
+    if (!mail || !password) {
+      setError("Enter your email and password to continue.");
+      return;
+    }
+
+    if (!EMAIL_PATTERN.test(mail)) {
+      setError("Enter a valid email address, like you@example.com.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await setPersistence(
+        auth,
+        rememberMe ? browserLocalPersistence : browserSessionPersistence
+      );
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        mail,
+        password
+      );
+
+      // Pick up a verification that happened in another tab or on another
+      // device — emailVerified is cached in the token otherwise.
+      await userCredential.user.reload();
+
+      if (!userCredential.user.emailVerified) {
+        // Unverified accounts don't get a session at all.
+        await signOut(auth);
+
+        setLoading(false);
+        setNeedsVerification(true);
+        setError(
+          "Verify your email before logging in. Check your inbox for the link we sent."
+        );
+        return;
+      }
+
+      router.push("/account");
+    } catch (err: unknown) {
+      console.error(err);
+      setLoading(false);
+
+      const code =
+        typeof err === "object" && err !== null && "code" in err
+          ? String((err as { code?: string }).code)
+          : "";
+
+      switch (code) {
+        case "auth/invalid-credential":
+        case "auth/user-not-found":
+        case "auth/wrong-password":
+          setError("Incorrect email or password.");
+          break;
+        case "auth/invalid-email":
+          setError("Enter a valid email address, like you@example.com.");
+          break;
+        case "auth/user-disabled":
+          setError("This account has been disabled. Contact support for help.");
+          break;
+        case "auth/too-many-requests":
+          setError(
+            "Too many failed attempts. Wait a moment before trying again."
+          );
+          break;
+        case "auth/network-request-failed":
+          setError("Network error. Check your connection and try again.");
+          break;
+        case "auth/operation-not-allowed":
+          setError("Email login is unavailable right now. Try again later.");
+          break;
+        default:
+          setError("Something went wrong. Please try again.");
+      }
+    }
+  };
 
   return (
     <AuthLayout>
@@ -23,22 +181,39 @@ export default function LoginPage() {
       >
         <form
           className="flex flex-col gap-[28px]"
-          onSubmit={(e) => {
-            e.preventDefault();
-            router.push("/account");
-          }}
+          onSubmit={handleLogin}
+          noValidate
         >
-          <Field label="Email" type="email" placeholder="you@example.com" required />
-          <Field label="Password" type="password" placeholder="Password" required />
+          <Field
+            label="Email"
+            type="email"
+            placeholder="you@example.com"
+            required
+            value={email}
+            onChange={setEmail}
+          />
+
+          <Field
+            label="Password"
+            type="password"
+            placeholder="Password"
+            required
+            value={password}
+            onChange={setPassword}
+          />
 
           <div className="flex items-center justify-between">
             <label className="flex cursor-pointer items-center gap-[8px] text-small-14 text-neutral-700">
               <input
                 type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                disabled={loading}
                 className="size-[16px] accent-purple-3"
               />
               Remember me
             </label>
+
             <Link
               href="/login"
               className="text-small-14 font-semibold text-purple-3 underline"
@@ -47,13 +222,58 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          <button type="submit" className="btn-primary h-[52px] w-full">
-            Login
+          {error && (
+            <p
+              role="alert"
+              aria-live="polite"
+              className="text-center text-sm text-red-600"
+            >
+              {error}
+            </p>
+          )}
+
+          {needsVerification && (
+            <div className="flex flex-col items-center gap-[8px]">
+              <button
+                type="button"
+                onClick={handleResend}
+                disabled={resendState === "sending" || loading}
+                className="text-small-14 font-bold text-purple-3 underline disabled:opacity-60"
+              >
+                {resendState === "sending"
+                  ? "Sending..."
+                  : "Resend verification email"}
+              </button>
+
+              {resendState === "sent" && (
+                <p className="text-small-14 text-green-3">
+                  Sent. Open the link, then log in again.
+                </p>
+              )}
+
+              {resendState === "error" && (
+                <p role="alert" className="text-center text-sm text-red-600">
+                  {resendError}
+                </p>
+              )}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            aria-busy={loading}
+            className="btn-primary h-[52px] w-full disabled:opacity-60"
+          >
+            {loading ? "Logging in..." : "Login"}
           </button>
 
           <p className="text-center text-content-18 text-neutral-700">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="font-bold text-purple-3 underline">
+            <Link
+              href="/signup"
+              className="font-bold text-purple-3 underline"
+            >
               Create Account
             </Link>
           </p>
@@ -75,7 +295,6 @@ export default function LoginPage() {
               <div className="flex items-center gap-[10px]">
                 <div className="flex -space-x-[10px]">
                   {[0, 1, 2].map((i) => (
-                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       key={i}
                       src={AVATARS[i]}
@@ -84,12 +303,18 @@ export default function LoginPage() {
                     />
                   ))}
                 </div>
+
                 <div className="text-desc-12 leading-[14px] text-white">
                   <p className="font-bold">JOIN WITH 100K+</p>
-                  <p className="font-bold">PEOPLE AROUND THE WORLD!</p>
-                  <p className="text-white/80">Let&apos;s meet some new friends</p>
+                  <p className="font-bold">
+                    PEOPLE AROUND THE WORLD!
+                  </p>
+                  <p className="text-white/80">
+                    Let&apos;s meet some new friends
+                  </p>
                 </div>
               </div>
+
               <Link
                 href="/signup"
                 className="btn-primary h-[40px] shrink-0 px-[20px] text-small-14"

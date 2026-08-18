@@ -29,12 +29,25 @@ body {
   .field-input {
     @apply w-full rounded-btn border border-neutral-200 bg-white px-[20px] py-[15px] text-content-18 text-neutral-800 outline-none transition-colors placeholder:text-neutral-300 focus:border-purple-1;
   }
-  /* z-10 fixes a real stacking bug: the input/select wrapper is a later
-     sibling with position:relative + z-index:auto, so it was painting over
-     this label wherever the -8px offset overlapped the input's top edge. */
   .field-label {
-    @apply pointer-events-none absolute -top-[8px] left-[15px] z-10 bg-white px-[5px] text-desc-12 leading-[12px] text-neutral-600;
+    @apply pointer-events-none absolute -top-[8px] left-[15px] bg-white px-[5px] text-desc-12 leading-[12px] text-neutral-600;
   }
+
+  .filter-field {
+    @apply flex flex-col gap-[12px];
+  }
+
+  .filter-field .field-label {
+     @apply static bg-transparent px-0 ml-[5px];
+  }
+
+  .adoption-publish-fields .field {
+  @apply flex flex-col gap-[1px];
+}
+
+.adoption-publish-fields .field-label {
+  @apply static bg-transparent px-0 ml-[5px];
+}
 
   .btn-primary {
     @apply inline-flex h-[44px] items-center justify-center gap-[10px] rounded-btn bg-purple-3 px-[30px] text-content-18 font-bold text-white transition-all duration-300 hover:bg-purple-2 active:scale-[0.98];

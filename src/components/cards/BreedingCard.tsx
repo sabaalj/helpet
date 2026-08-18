@@ -9,19 +9,8 @@ import {
 } from "@phosphor-icons/react";
 import type { BreedingRequest } from "@/data/content";
 import PetPhoto from "./PetPhoto";
-import AnimalTypeBadge from "@/components/decor/AnimalTypeBadge";
 
-export default function BreedingCard({
-  req,
-  animalIcon = false,
-}: {
-  req: BreedingRequest;
-  /** Opt-in: renders the circular line-art animal-category badge instead
-   * of the original generic paw-icon badge. Kept off by default so the
-   * homepage's Breeding preview section (which reuses this same card)
-   * is unaffected. */
-  animalIcon?: boolean;
-}) {
+export default function BreedingCard({ req }: { req: BreedingRequest }) {
   const GenderIcon = req.gender === "Male" ? GenderMale : GenderFemale;
   return (
     <article className="flex h-full flex-col gap-[15px] rounded-card border border-purple-4/60 bg-white p-[15px] shadow-card transition-shadow hover:shadow-panel">
@@ -42,14 +31,10 @@ export default function BreedingCard({
         <h3 className="text-title-20 font-bold uppercase text-neutral-800">
           {req.breed}
         </h3>
-        {animalIcon ? (
-          <AnimalTypeBadge type={req.type} />
-        ) : (
-          <span className="flex items-center gap-[5px] rounded-full bg-purple-5 px-[10px] py-[4px] text-desc-12 font-semibold text-purple-3">
-            <PawPrint size={12} weight="fill" />
-            {req.type}
-          </span>
-        )}
+        <span className="flex items-center gap-[5px] rounded-full bg-purple-5 px-[10px] py-[4px] text-desc-12 font-semibold text-purple-3">
+          <PawPrint size={12} weight="fill" />
+          {req.type}
+        </span>
       </div>
 
       <div className="flex items-center gap-[15px] text-small-14 text-neutral-700">
