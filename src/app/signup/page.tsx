@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   createUserWithEmailAndPassword,
+  linkWithPhoneNumber,
+  RecaptchaVerifier,
   sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
+  type ConfirmationResult,
 } from "firebase/auth";
 import {
   addDoc,
@@ -27,6 +30,28 @@ import { Field } from "@/components/ui/fields";
 import { auth } from "@/lib/firebase";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Firebase needs E.164 ("+9665XXXXXXXX"). Accepts the common Saudi shapes:
+ * 0512345678, 512345678, 00966512345678, +966 51 234 5678.
+ * Returns "" when it can't produce something valid.
+ */
+function toE164(input: string) {
+  const raw = input.trim();
+  let digits = raw.replace(/\D/g, "");
+
+  if (raw.startsWith("+")) {
+    return digits.length >= 8 ? `+${digits}` : "";
+  }
+
+  if (digits.startsWith("00")) digits = digits.slice(2);
+
+  // Local Saudi formats -> add the country code.
+  if (digits.startsWith("0")) digits = `966${digits.slice(1)}`;
+  else if (digits.length === 9 && digits.startsWith("5")) digits = `966${digits}`;
+
+  return digits.length >= 10 ? `+${digits}` : "";
+}
 
 const PET_TYPES = ["Cat", "Dog", "Bird", "Rabbit", "Other"] as const;
 const PET_GENDERS = ["Male", "Female", "Unknown"] as const;
@@ -105,13 +130,169 @@ export default function SignUpPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Post-signup confirmation screen.
-  const [verificationSent, setVerificationSent] = useState(false);
+  // Which screen we're on: the form, the OTP step, or the final message.
+  const [step, setStep] = useState<"form" | "otp" | "done">("form");
+
   const [verificationEmail, setVerificationEmail] = useState("");
   const [resendState, setResendState] = useState<
     "idle" | "sending" | "sent" | "error"
   >("idle");
   const [resendError, setResendError] = useState("");
+
+  // Phone / OTP step.
+  const [otpCode, setOtpCode] = useState("");
+  const [otpPhone, setOtpPhone] = useState("");
+  const [otpError, setOtpError] = useState("");
+  const [otpVerifying, setOtpVerifying] = useState(false);
+  const [otpResending, setOtpResending] = useState(false);
+  const confirmationRef = useRef<ConfirmationResult | null>(null);
+  const recaptchaRef = useRef<RecaptchaVerifier | null>(null);
+
+  // reCAPTCHA is mandatory for phone auth. Invisible, but it must exist in
+  // the DOM before linkWithPhoneNumber is called.
+  const getRecaptcha = () => {
+    if (!recaptchaRef.current) {
+      recaptchaRef.current = new RecaptchaVerifier(
+        auth,
+        "recaptcha-container",
+        { size: "invisible" }
+      );
+    }
+
+    return recaptchaRef.current;
+  };
+
+  useEffect(() => {
+    return () => {
+      recaptchaRef.current?.clear();
+      recaptchaRef.current = null;
+    };
+  }, []);
+
+  const describeOtpError = (err: unknown) => {
+    const code =
+      typeof err === "object" && err !== null && "code" in err
+        ? String((err as { code?: string }).code)
+        : "";
+
+    switch (code) {
+      case "auth/invalid-verification-code":
+        return "That code isn't right. Check it and try again.";
+      case "auth/code-expired":
+        return "The code expired. Request a new one.";
+      case "auth/invalid-phone-number":
+        return "That phone number isn't valid. Include the country code.";
+      case "auth/too-many-requests":
+        return "Too many attempts. Wait a few minutes and try again.";
+      case "auth/credential-already-in-use":
+      case "auth/account-exists-with-different-credential":
+        return "This number is already linked to another account.";
+      case "auth/operation-not-allowed":
+        return "Phone sign-in isn't enabled for this project yet.";
+      case "auth/network-request-failed":
+        return "Network error. Check your connection and try again.";
+      default:
+        return "Couldn't verify the code. Please try again.";
+    }
+  };
+
+  /** Sends (or resends) the SMS code to the current user's phone. */
+  const sendOtp = async (e164: string) => {
+    const user = auth.currentUser;
+
+    if (!user) {
+      setOtpError("Your session ended. Log in to finish verifying your number.");
+      return false;
+    }
+
+    try {
+      confirmationRef.current = await linkWithPhoneNumber(
+        user,
+        e164,
+        getRecaptcha()
+      );
+
+      return true;
+    } catch (err) {
+      console.error("Failed to send OTP:", err);
+
+      // A failed attempt burns the verifier — rebuild it next time.
+      recaptchaRef.current?.clear();
+      recaptchaRef.current = null;
+
+      setOtpError(describeOtpError(err));
+      return false;
+    }
+  };
+
+  const handleVerifyOtp = async () => {
+    if (otpVerifying) return;
+
+    const code = otpCode.trim();
+
+    if (code.length < 6) {
+      setOtpError("Enter the 6-digit code we sent you.");
+      return;
+    }
+
+    if (!confirmationRef.current) {
+      setOtpError("Request a new code to continue.");
+      return;
+    }
+
+    setOtpVerifying(true);
+    setOtpError("");
+
+    try {
+      // Links the phone number to the account created a moment ago, so it
+      // stays one user with two providers.
+      const credential = await confirmationRef.current.confirm(code);
+      const uid = credential.user.uid;
+
+      try {
+        await setDoc(
+          doc(db, "users", uid),
+          { phone: otpPhone, phoneVerified: true },
+          { merge: true }
+        );
+      } catch (dbError) {
+        console.error("Failed to flag phone as verified:", dbError);
+      }
+
+      try {
+        await sendEmailVerification(credential.user);
+      } catch (mailError) {
+        console.error("Failed to send verification email:", mailError);
+      }
+
+      try {
+        await signOut(auth);
+      } catch (signOutError) {
+        console.error("Failed to sign out after signup:", signOutError);
+      }
+
+      setOtpVerifying(false);
+      setStep("done");
+    } catch (err) {
+      console.error(err);
+      setOtpVerifying(false);
+      setOtpError(describeOtpError(err));
+    }
+  };
+
+  const handleResendOtp = async () => {
+    if (otpResending) return;
+
+    setOtpResending(true);
+    setOtpError("");
+    setOtpCode("");
+
+    const sent = await sendOtp(otpPhone);
+
+    setOtpResending(false);
+
+    if (sent) setOtpError("");
+  };
 
   const updatePet = (id: number, key: keyof Omit<PetDraft, "id">, value: string) => {
     setPets((current) =>
@@ -203,8 +384,13 @@ export default function SignUpPage() {
       return;
     }
 
-    if (tel.replace(/\D/g, "").length < 8) {
-      setError("Enter a valid phone number, including the country code.");
+    // Firebase phone auth only accepts E.164, so normalise up front.
+    const e164 = toE164(tel);
+
+    if (!e164) {
+      setError(
+        "Enter a valid phone number with country code, like +966512345678."
+      );
       return;
     }
 
@@ -288,8 +474,9 @@ export default function SignUpPage() {
         await setDoc(doc(db, "users", uid), {
           fullName: name,
           email: mail,
-          phone: tel,
+          phone: e164,
           city: town,
+          phoneVerified: false,
           createdAt: serverTimestamp(),
         });
 
@@ -315,26 +502,22 @@ export default function SignUpPage() {
         console.error("Failed to save user profile or pets:", dbError);
       }
 
-      try {
-        await sendEmailVerification(userCredential.user);
-      } catch (mailError) {
-        // A failed verification email shouldn't undo a created account —
-        // the confirmation screen offers a resend button.
-        console.error("Failed to send verification email:", mailError);
-      }
-
-      // createUserWithEmailAndPassword signs the new user in automatically.
-      // Drop that session — the account isn't verified yet, so it shouldn't
-      // hold a live session either.
-      try {
-        await signOut(auth);
-      } catch (signOutError) {
-        console.error("Failed to sign out after signup:", signOutError);
-      }
-
+      // Keep the session alive on purpose: linkWithPhoneNumber needs the
+      // signed-in user. The email link and sign-out happen once the code
+      // is confirmed.
       setVerificationEmail(mail);
-      setVerificationSent(true);
+      setOtpPhone(e164);
+      setOtpCode("");
+      setOtpError("");
+      setStep("otp");
       setLoading(false);
+
+      const sent = await sendOtp(e164);
+
+      if (!sent) {
+        // sendOtp already set a message; the OTP screen offers a retry.
+        console.error("Initial OTP send failed for", e164);
+      }
     } catch (err: unknown) {
       console.error(err);
       setLoading(false);
@@ -382,14 +565,89 @@ export default function SignUpPage() {
     />
   );
 
-  // Shown after the account is created and the verification email is sent.
-  if (verificationSent) {
+  // Step 2: the account exists, now the phone number must be confirmed
+  // before anything else happens.
+  if (step === "otp") {
+    return (
+      <AuthLayout>
+        <AuthPanel
+          eyebrow="One more step"
+          title="Verify your phone"
+          intro="We sent a 6-digit code by SMS. Enter it to finish creating your account."
+        >
+          <div className="flex flex-col gap-[28px]">
+            <p className="rounded-card bg-purple-5/60 px-[20px] py-[15px] text-content-18 text-neutral-800">
+              Code sent to <span className="font-bold">{otpPhone}</span>.
+            </p>
+
+            <label className="flex flex-col gap-[8px]">
+              <span className="text-small-14 font-semibold text-neutral-800">
+                Verification Code
+              </span>
+
+              <input
+                type="text"
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                maxLength={6}
+                value={otpCode}
+                onChange={(e) =>
+                  setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))
+                }
+                placeholder="123456"
+                disabled={otpVerifying}
+                className="h-[52px] w-full rounded-btn border border-neutral-300 bg-white px-[16px] text-center text-title-20 tracking-[8px] text-neutral-800 outline-none transition-colors focus:border-purple-3 disabled:opacity-60"
+              />
+            </label>
+
+            {otpError && (
+              <p
+                role="alert"
+                aria-live="polite"
+                className="text-center text-sm text-red-600"
+              >
+                {otpError}
+              </p>
+            )}
+
+            <button
+              type="button"
+              onClick={handleVerifyOtp}
+              disabled={otpVerifying || otpCode.length < 6}
+              aria-busy={otpVerifying}
+              className="btn-primary h-[52px] w-full disabled:opacity-60"
+            >
+              {otpVerifying ? "Verifying..." : "Verify & Finish"}
+            </button>
+
+            <button
+              type="button"
+              onClick={handleResendOtp}
+              disabled={otpResending || otpVerifying}
+              className="text-center text-content-18 font-bold text-purple-3 underline disabled:opacity-60"
+            >
+              {otpResending ? "Sending..." : "Resend code"}
+            </button>
+
+            <p className="text-center text-small-14 text-neutral-600">
+              Wrong number? Finish here, then update it from your account.
+            </p>
+          </div>
+        </AuthPanel>
+
+        {aside}
+      </AuthLayout>
+    );
+  }
+
+  // Step 3: everything is done — phone linked, email link sent.
+  if (step === "done") {
     return (
       <AuthLayout>
         <AuthPanel
           eyebrow="Almost there"
           title="Verify your email"
-          intro="Your account is ready. Confirm your email address to activate it."
+          intro="Your phone is confirmed. One last step: confirm your email address."
         >
           <div className="flex flex-col gap-[28px]">
             <p className="rounded-card bg-purple-5/60 px-[20px] py-[15px] text-content-18 text-neutral-800">
@@ -684,6 +942,10 @@ export default function SignUpPage() {
           </p>
 
           <SocialButtons verb="Sign Up" />
+
+          {/* Required by Firebase phone auth. Invisible, but it must be in
+              the DOM before the OTP is requested. */}
+          <div id="recaptcha-container" />
         </form>
       </AuthPanel>
 

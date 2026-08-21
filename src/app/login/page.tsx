@@ -133,6 +133,22 @@ export default function LoginPage() {
         return;
       }
 
+      // A signup interrupted during the SMS step leaves an account with no
+      // phone provider linked. Those aren't finished, so they don't get in.
+      const hasPhone = userCredential.user.providerData.some(
+        (provider) => provider.providerId === "phone"
+      );
+
+      if (!hasPhone) {
+        await signOut(auth);
+
+        setLoading(false);
+        setError(
+          "Your phone number was never confirmed. Sign up again to finish verifying it."
+        );
+        return;
+      }
+
       router.push("/account");
     } catch (err: unknown) {
       console.error(err);
