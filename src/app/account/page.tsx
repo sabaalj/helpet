@@ -31,6 +31,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 
@@ -319,6 +320,178 @@ function PetFormModal({
   );
 }
 
+type ProfileDraft = {
+  fullName: string;
+  phone: string;
+  city: string;
+};
+
+/** Edit dialog for the profile fields. Email is shown but not editable. */
+function ProfileFormModal({
+  initial,
+  email,
+  saving,
+  error,
+  onSave,
+  onClose,
+}: {
+  initial: ProfileDraft;
+  email: string;
+  saving: boolean;
+  error: string;
+  onSave: (profile: ProfileDraft) => void;
+  onClose: () => void;
+}) {
+  const [draft, setDraft] = useState<ProfileDraft>(initial);
+  const [localError, setLocalError] = useState("");
+
+  const update = (key: keyof ProfileDraft, value: string) =>
+    setDraft((current) => ({ ...current, [key]: value }));
+
+  const handleSave = () => {
+    const cleaned: ProfileDraft = {
+      fullName: draft.fullName.trim(),
+      phone: draft.phone.trim(),
+      city: draft.city.trim(),
+    };
+
+    if (cleaned.fullName.length < 2) {
+      return setLocalError("Enter your full name.");
+    }
+
+    if (cleaned.phone.replace(/\D/g, "").length < 8) {
+      return setLocalError("Enter a valid phone number with country code.");
+    }
+
+    if (cleaned.city.length < 2) {
+      return setLocalError("Enter the city you live in.");
+    }
+
+    setLocalError("");
+    onSave(cleaned);
+  };
+
+  const inputClass =
+    "h-[48px] w-full rounded-btn border border-neutral-300 bg-white px-[15px] text-content-18 text-neutral-800 outline-none transition-colors focus:border-purple-3 disabled:opacity-60";
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Edit profile"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/40 p-[20px]"
+      onClick={onClose}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[90vh] w-full max-w-[440px] overflow-y-auto rounded-card bg-white p-[25px] shadow-card"
+      >
+        <div className="flex items-center justify-between">
+          <h3 className="text-title-20 font-bold text-purple-2">
+            Edit information
+          </h3>
+
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="text-neutral-600 transition-colors hover:text-neutral-800"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <div className="mt-[20px] flex flex-col gap-[15px]">
+          <label className="flex flex-col gap-[6px]">
+            <span className="text-small-14 font-semibold text-neutral-800">
+              Full name
+            </span>
+            <input
+              type="text"
+              value={draft.fullName}
+              onChange={(e) => update("fullName", e.target.value)}
+              placeholder="Your full name"
+              disabled={saving}
+              className={inputClass}
+            />
+          </label>
+
+          <div className="flex flex-col gap-[6px]">
+            <span className="text-small-14 font-semibold text-neutral-800">
+              Email
+            </span>
+            <input
+              type="email"
+              value={email}
+              disabled
+              readOnly
+              className={cn(inputClass, "bg-purple-5/40 text-neutral-600")}
+            />
+            <p className="text-desc-12 text-neutral-600">
+              Your email is tied to your login and can&apos;t be changed here.
+            </p>
+          </div>
+
+          <label className="flex flex-col gap-[6px]">
+            <span className="text-small-14 font-semibold text-neutral-800">
+              Phone number
+            </span>
+            <input
+              type="tel"
+              value={draft.phone}
+              onChange={(e) => update("phone", e.target.value)}
+              placeholder="+966 5X XXX XXXX"
+              disabled={saving}
+              className={inputClass}
+            />
+          </label>
+
+          <label className="flex flex-col gap-[6px]">
+            <span className="text-small-14 font-semibold text-neutral-800">
+              City
+            </span>
+            <input
+              type="text"
+              value={draft.city}
+              onChange={(e) => update("city", e.target.value)}
+              placeholder="Riyadh"
+              disabled={saving}
+              className={inputClass}
+            />
+          </label>
+
+          {(localError || error) && (
+            <p role="alert" className="text-center text-sm text-red-600">
+              {localError || error}
+            </p>
+          )}
+
+          <div className="mt-[5px] flex gap-[10px]">
+            <button
+              type="button"
+              onClick={onClose}
+              disabled={saving}
+              className="h-[48px] flex-1 rounded-btn border border-purple-4 text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5 disabled:opacity-60"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              aria-busy={saving}
+              className="btn-primary h-[48px] flex-1 disabled:opacity-60"
+            >
+              {saving ? "Saving..." : "Save changes"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AccountPage() {
   const router = useRouter();
 
@@ -338,6 +511,12 @@ export default function AccountPage() {
   const [profileLoading, setProfileLoading] = useState(true);
   const [profileError, setProfileError] = useState("");
   const [profileMissing, setProfileMissing] = useState(false);
+
+  // Profile editing.
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
+  const [profileSaving, setProfileSaving] = useState(false);
+  const [profileSaveError, setProfileSaveError] = useState("");
+  const [profileSaved, setProfileSaved] = useState(false);
 
   const [pets, setPets] = useState<PetRecord[]>([]);
   const [petsLoading, setPetsLoading] = useState(true);
@@ -504,21 +683,66 @@ export default function AccountPage() {
     return () => unsubscribe();
   }, [router, loadAccount]);
 
-  const describeWriteError = (error: unknown, verb: string) => {
+  const describeWriteError = (
+    error: unknown,
+    verb: string,
+    subject = "pet"
+  ) => {
     const code =
       typeof error === "object" && error !== null && "code" in error
         ? String((error as { code?: string }).code)
         : "";
 
     if (code === "permission-denied") {
-      return `You don't have permission to ${verb} pets. Check your Firestore security rules.`;
+      return `You don't have permission to ${verb} this ${subject}. Check your Firestore security rules.`;
     }
 
     if (code === "unavailable" || code === "deadline-exceeded") {
       return "Can't reach the database. Check your connection and try again.";
     }
 
-    return `Couldn't ${verb} the pet. Please try again.`;
+    return `Couldn't ${verb} the ${subject}. Please try again.`;
+  };
+
+  const handleSaveProfile = async (draft: ProfileDraft) => {
+    if (!authUser || profileSaving) return;
+
+    setProfileSaving(true);
+    setProfileSaveError("");
+
+    try {
+      // setDoc with merge instead of updateDoc: this also creates the
+      // document for accounts that never got one written at signup.
+      await setDoc(
+        doc(db, "users", authUser.uid),
+        {
+          fullName: draft.fullName,
+          phone: draft.phone,
+          city: draft.city,
+          email: userData.email || authUser.email || "",
+        },
+        { merge: true }
+      );
+
+      if (!mountedRef.current) return;
+
+      setUserData((current) => ({ ...current, ...draft }));
+      setProfileMissing(false);
+      setProfileSaving(false);
+      setProfileModalOpen(false);
+      setProfileSaved(true);
+
+      window.setTimeout(() => {
+        if (mountedRef.current) setProfileSaved(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Failed to save profile:", error);
+
+      if (!mountedRef.current) return;
+
+      setProfileSaving(false);
+      setProfileSaveError(describeWriteError(error, "update", "profile"));
+    }
   };
 
   const handleSavePet = async (draft: PetDraft) => {
@@ -786,9 +1010,27 @@ export default function AccountPage() {
                           Information
                         </h2>
 
-                        <button className="flex items-center gap-[6px] rounded-btn border border-purple-4 px-[15px] py-[6px] text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5">
-                          Edit <Pencil size={15} />
-                        </button>
+                        <div className="flex items-center gap-[12px]">
+                          {profileSaved && (
+                            <span
+                              role="status"
+                              className="text-small-14 font-semibold text-green-3"
+                            >
+                              Saved
+                            </span>
+                          )}
+
+                          <button
+                            onClick={() => {
+                              setProfileSaveError("");
+                              setProfileModalOpen(true);
+                            }}
+                            disabled={profileLoading || !!profileError}
+                            className="flex items-center gap-[6px] rounded-btn border border-purple-4 px-[15px] py-[6px] text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5 disabled:opacity-60"
+                          >
+                            Edit <Pencil size={15} />
+                          </button>
+                        </div>
                       </div>
 
                       {profileLoading ? (
@@ -815,11 +1057,23 @@ export default function AccountPage() {
                       ) : (
                         <>
                           {profileMissing && (
-                            <p className="mt-[20px] rounded-card bg-yellow/10 px-[15px] py-[12px] text-small-14 text-neutral-700">
-                              Your profile information hasn&apos;t been saved
-                              yet. Your account is active — add your details
-                              with Edit to complete it.
-                            </p>
+                            <div className="mt-[20px] flex flex-wrap items-center justify-between gap-[12px] rounded-card bg-yellow/10 px-[15px] py-[12px]">
+                              <p className="text-small-14 text-neutral-700">
+                                Your profile information hasn&apos;t been saved
+                                yet. Your account is active — add your details
+                                to complete it.
+                              </p>
+
+                              <button
+                                onClick={() => {
+                                  setProfileSaveError("");
+                                  setProfileModalOpen(true);
+                                }}
+                                className="shrink-0 rounded-btn border border-purple-4 bg-white px-[15px] py-[6px] text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5"
+                              >
+                                Add details
+                              </button>
+                            </div>
                           )}
 
                           <div className="mt-[20px] grid grid-cols-1 gap-y-[20px] sm:grid-cols-2">
@@ -1088,6 +1342,26 @@ export default function AccountPage() {
           </div>
         </div>
       </div>
+
+      {profileModalOpen && (
+        <ProfileFormModal
+          initial={{
+            fullName: userData.fullName,
+            phone: userData.phone,
+            city: userData.city,
+          }}
+          email={userData.email || authUser.email || ""}
+          saving={profileSaving}
+          error={profileSaveError}
+          onSave={handleSaveProfile}
+          onClose={() => {
+            if (!profileSaving) {
+              setProfileModalOpen(false);
+              setProfileSaveError("");
+            }
+          }}
+        />
+      )}
 
       {petModal && (
         <PetFormModal
