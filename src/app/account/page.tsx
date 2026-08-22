@@ -20,7 +20,12 @@ import {
   X,
 } from "@phosphor-icons/react";
 import {
+  deleteUser,
+  EmailAuthProvider,
+  GoogleAuthProvider,
   onAuthStateChanged,
+  reauthenticateWithCredential,
+  reauthenticateWithPopup,
   signOut,
   type User as FirebaseUser,
 } from "firebase/auth";
@@ -492,6 +497,161 @@ function ProfileFormModal({
   );
 }
 
+/**
+ * Delete-account dialog. Firebase requires a recent login before deleting,
+ * so this collects the password (or reopens the Google popup) first.
+ */
+function DeleteAccountModal({
+  isGoogleAccount,
+  petCount,
+  deleting,
+  error,
+  onConfirm,
+  onClose,
+}: {
+  isGoogleAccount: boolean;
+  petCount: number;
+  deleting: boolean;
+  error: string;
+  onConfirm: (password: string) => void;
+  onClose: () => void;
+}) {
+  const [password, setPassword] = useState("");
+  const [confirmText, setConfirmText] = useState("");
+  const [localError, setLocalError] = useState("");
+
+  const handleConfirm = () => {
+    if (confirmText.trim().toUpperCase() !== "DELETE") {
+      return setLocalError('Type DELETE to confirm.');
+    }
+
+    if (!isGoogleAccount && !password) {
+      return setLocalError("Enter your password to confirm.");
+    }
+
+    setLocalError("");
+    onConfirm(password);
+  };
+
+  const inputClass =
+    "h-[48px] w-full rounded-btn border border-neutral-300 bg-white px-[15px] text-content-18 text-neutral-800 outline-none transition-colors focus:border-red-2 disabled:opacity-60";
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Delete account"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/40 p-[20px]"
+      onClick={onClose}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[90vh] w-full max-w-[440px] overflow-y-auto rounded-card bg-white p-[25px] shadow-card"
+      >
+        <div className="flex items-center justify-between">
+          <h3 className="text-title-20 font-bold text-red-2">
+            Delete your account
+          </h3>
+
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="text-neutral-600 transition-colors hover:text-neutral-800"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <div className="mt-[20px] flex flex-col gap-[15px]">
+          <div className="rounded-card bg-red-2/10 px-[15px] py-[12px]">
+            <p className="text-small-14 font-bold text-neutral-800">
+              This permanently removes:
+            </p>
+
+            <ul className="mt-[8px] flex list-disc flex-col gap-[4px] pl-[18px] text-small-14 text-neutral-700">
+              <li>Your profile details</li>
+              <li>
+                {petCount > 0
+                  ? `Your ${petCount} saved ${petCount === 1 ? "pet" : "pets"}`
+                  : "Any saved pets"}
+              </li>
+              <li>Your login — you won&apos;t be able to sign back in</li>
+            </ul>
+
+            <p className="mt-[10px] text-small-14 text-neutral-700">
+              This can&apos;t be undone.
+            </p>
+          </div>
+
+          {isGoogleAccount ? (
+            <p className="text-small-14 text-neutral-700">
+              You&apos;ll be asked to confirm with Google before the account is
+              removed.
+            </p>
+          ) : (
+            <label className="flex flex-col gap-[6px]">
+              <span className="text-small-14 font-semibold text-neutral-800">
+                Confirm your password
+              </span>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                disabled={deleting}
+                autoComplete="current-password"
+                className={inputClass}
+              />
+            </label>
+          )}
+
+          <label className="flex flex-col gap-[6px]">
+            <span className="text-small-14 font-semibold text-neutral-800">
+              Type DELETE to confirm
+            </span>
+            <input
+              type="text"
+              value={confirmText}
+              onChange={(e) => setConfirmText(e.target.value)}
+              placeholder="DELETE"
+              disabled={deleting}
+              className={inputClass}
+            />
+          </label>
+
+          {(localError || error) && (
+            <p role="alert" className="text-center text-sm text-red-600">
+              {localError || error}
+            </p>
+          )}
+
+          <div className="mt-[5px] flex gap-[10px]">
+            <button
+              type="button"
+              onClick={onClose}
+              disabled={deleting}
+              className="h-[48px] flex-1 rounded-btn border border-purple-4 text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5 disabled:opacity-60"
+            >
+              Keep my account
+            </button>
+
+            <button
+              type="button"
+              onClick={handleConfirm}
+              disabled={deleting}
+              aria-busy={deleting}
+              className="h-[48px] flex-1 rounded-btn bg-red-2 text-small-14 font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+            >
+              {deleting ? "Deleting..." : "Delete account"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AccountPage() {
   const router = useRouter();
 
@@ -524,6 +684,11 @@ export default function AccountPage() {
 
   const [loggingOut, setLoggingOut] = useState(false);
   const [logoutError, setLogoutError] = useState("");
+
+  // Account deletion.
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [accountDeleting, setAccountDeleting] = useState(false);
+  const [accountDeleteError, setAccountDeleteError] = useState("");
 
   // Pet add / edit / delete.
   const [petModal, setPetModal] = useState<
@@ -818,6 +983,99 @@ export default function AccountPage() {
     }
   };
 
+  const handleDeleteAccount = async (password: string) => {
+    if (!authUser || accountDeleting) return;
+
+    setAccountDeleting(true);
+    setAccountDeleteError("");
+
+    try {
+      // 1. Prove it's really them. Firebase refuses to delete an account
+      //    whose last sign-in is stale.
+      const usesGoogle = authUser.providerData.some(
+        (provider) => provider.providerId === "google.com"
+      );
+
+      if (usesGoogle) {
+        await reauthenticateWithPopup(authUser, new GoogleAuthProvider());
+      } else {
+        const credential = EmailAuthProvider.credential(
+          authUser.email || "",
+          password
+        );
+
+        await reauthenticateWithCredential(authUser, credential);
+      }
+
+      // 2. Firestore first, while the account still has permission to write.
+      //    Deleting the auth user first would strand this data forever.
+      const petsSnapshot = await getDocs(
+        collection(db, "users", authUser.uid, "pets")
+      );
+
+      await Promise.all(
+        petsSnapshot.docs.map((petDoc) =>
+          deleteDoc(doc(db, "users", authUser.uid, "pets", petDoc.id))
+        )
+      );
+
+      await deleteDoc(doc(db, "users", authUser.uid));
+
+      // 3. Finally the login itself. This signs the user out as a side
+      //    effect, so the auth listener sends them to /login.
+      await deleteUser(authUser);
+
+      if (!mountedRef.current) return;
+
+      router.replace("/");
+    } catch (error) {
+      console.error("Failed to delete account:", error);
+
+      if (!mountedRef.current) return;
+
+      const code =
+        typeof error === "object" && error !== null && "code" in error
+          ? String((error as { code?: string }).code)
+          : "";
+
+      setAccountDeleting(false);
+
+      switch (code) {
+        case "auth/wrong-password":
+        case "auth/invalid-credential":
+          setAccountDeleteError("That password isn't right. Try again.");
+          break;
+        case "auth/too-many-requests":
+          setAccountDeleteError(
+            "Too many attempts. Wait a few minutes and try again."
+          );
+          break;
+        case "auth/popup-closed-by-user":
+        case "auth/cancelled-popup-request":
+          setAccountDeleteError("Confirmation cancelled. Your account is safe.");
+          break;
+        case "auth/requires-recent-login":
+          setAccountDeleteError(
+            "For security, log out and back in, then delete your account."
+          );
+          break;
+        case "permission-denied":
+          setAccountDeleteError(
+            "You don't have permission to remove this data. Check your Firestore security rules."
+          );
+          break;
+        case "unavailable":
+        case "deadline-exceeded":
+          setAccountDeleteError(
+            "Can't reach the database. Check your connection and try again."
+          );
+          break;
+        default:
+          setAccountDeleteError("Couldn't delete your account. Please try again.");
+      }
+    }
+  };
+
   const handleLogout = async () => {
     if (loggingOut) return;
 
@@ -961,6 +1219,18 @@ export default function AccountPage() {
                 {logoutError}
               </p>
             )}
+
+            <button
+              onClick={() => {
+                setAccountDeleteError("");
+                setDeleteModalOpen(true);
+              }}
+              disabled={loggingOut || accountDeleting}
+              className="mt-[20px] flex items-center gap-[12px] border-t border-purple-4/40 px-[10px] pt-[16px] text-small-14 font-semibold text-neutral-600 transition-colors hover:text-red-2 disabled:opacity-60"
+            >
+              <Trash size={18} />
+              Delete account
+            </button>
           </nav>
         </aside>
 
@@ -1342,6 +1612,24 @@ export default function AccountPage() {
           </div>
         </div>
       </div>
+
+      {deleteModalOpen && (
+        <DeleteAccountModal
+          isGoogleAccount={authUser.providerData.some(
+            (provider) => provider.providerId === "google.com"
+          )}
+          petCount={pets.length}
+          deleting={accountDeleting}
+          error={accountDeleteError}
+          onConfirm={handleDeleteAccount}
+          onClose={() => {
+            if (!accountDeleting) {
+              setDeleteModalOpen(false);
+              setAccountDeleteError("");
+            }
+          }}
+        />
+      )}
 
       {profileModalOpen && (
         <ProfileFormModal
