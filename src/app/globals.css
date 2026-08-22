@@ -49,6 +49,52 @@ body {
   @apply static bg-transparent px-0 ml-[5px];
 }
 
+  /* ---- Modern field treatment (Lost & Found report form) ----
+     Label sits above the control instead of notched into the border,
+     with a soft focus ring and larger radii. Scoped to .form-modern so
+     the original Figma notch-label forms elsewhere are untouched. */
+  .form-modern .field {
+    @apply flex flex-col gap-[8px];
+  }
+  .form-modern .field-label {
+    @apply static bg-transparent px-0 text-[13px] font-semibold leading-[16px] text-neutral-700 transition-colors;
+  }
+  .form-modern .field:focus-within .field-label {
+    @apply text-purple-1;
+  }
+  /* Mark required controls straight from the DOM — no extra prop needed. */
+  .form-modern .field:has(:required) .field-label::after {
+    content: "*";
+    @apply ml-[4px] text-red-2;
+  }
+  .form-modern .field-input {
+    @apply rounded-[14px] border-[1.5px] border-neutral-200 bg-white px-[18px] py-[14px] text-[16px] leading-[24px] shadow-[0_1px_2px_rgba(65,0,117,0.05)] transition-all duration-200 placeholder:text-neutral-300;
+  }
+  .form-modern .field-input:hover:not(:focus) {
+    @apply border-purple-4;
+  }
+  .form-modern .field-input:focus {
+    @apply border-purple-1 shadow-[0_0_0_4px_rgba(143,0,255,0.13)];
+  }
+  /* Only flag invalid input once the user has actually typed something. */
+  .form-modern .field-input:not(:placeholder-shown):invalid {
+    @apply border-red-2;
+  }
+  /* Grey out a select still sitting on its placeholder option. */
+  .form-modern select.field-input:has(option[value=""]:checked) {
+    @apply text-neutral-300;
+  }
+  .form-modern .photo-drop {
+    @apply rounded-[16px] border-[1.5px] border-dashed border-purple-4 bg-white transition-all duration-200;
+  }
+  .form-modern .photo-drop:hover,
+  .form-modern .photo-drop[data-dragging="true"] {
+    @apply border-purple-1 bg-purple-5/50;
+  }
+  .form-modern .photo-drop[data-dragging="true"] {
+    @apply shadow-[0_0_0_4px_rgba(143,0,255,0.13)];
+  }
+
   /* Loading placeholder — lilac base with a light sweep crossing it. */
   .skeleton {
     @apply relative overflow-hidden bg-purple-5;

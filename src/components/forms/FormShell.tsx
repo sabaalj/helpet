@@ -138,6 +138,7 @@ export default function FormShell({
   banner,
   side,
   success,
+  className,
   children,
 }: {
   steps: string[];
@@ -145,6 +146,8 @@ export default function FormShell({
   banner: React.ReactNode;
   side: Omit<Parameters<typeof SideCard>[0], "onSubmit">;
   success: Parameters<typeof SuccessState>[0];
+  /** Applied to the fields column — lets a page opt into a field style. */
+  className?: string;
   children: React.ReactNode;
 }) {
   const [submitted, setSubmitted] = useState(false);
@@ -176,7 +179,7 @@ export default function FormShell({
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
-              <div className="flex flex-col gap-[35px]">
+              <div className={cn("flex flex-col gap-[35px]", className)}>
                 <InfoBanner>{banner}</InfoBanner>
                 {children}
               </div>

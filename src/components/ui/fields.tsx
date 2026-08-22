@@ -1,8 +1,8 @@
 "use client";
 
-import { CaretDown, UploadSimple } from "@phosphor-icons/react";
+import { CaretDown, UploadSimple, X } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Form controls replicating the Figma floating-label field pattern
@@ -113,7 +113,8 @@ export function TextareaField({
   );
 }
 
-/** Dashed photo-upload drop area, styled with the design's purple accents. */
+/** Dashed photo-upload drop area, styled with the design's purple accents.
+ *  Accepts a click or a dragged file, and lets a wrong pick be cleared. */
 export function PhotoUpload({
   label = "Pet Photo",
   className,
@@ -124,14 +125,47 @@ export function PhotoUpload({
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [dragging, setDragging] = useState(false);
+
+  // Object URLs stay alive until revoked — drop the old one on every swap.
+  useEffect(() => {
+    if (!preview) return;
+    return () => URL.revokeObjectURL(preview);
+  }, [preview]);
+
+  const accept = (file?: File) => {
+    if (!file || !file.type.startsWith("image/")) return;
+    setFileName(file.name);
+    setPreview(URL.createObjectURL(file));
+  };
+
+  const clear = () => {
+    setFileName(null);
+    setPreview(null);
+    if (inputRef.current) inputRef.current.value = "";
+  };
 
   return (
     <div className={cn("field", className)}>
       <span className="field-label z-10">{label}</span>
+      {/* Own stacking context so the clear button anchors to the drop area,
+          not to the field (whose label may sit above it). */}
+      <div className="relative">
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
-        className="flex min-h-[160px] w-full flex-col items-center justify-center gap-[10px] rounded-btn border border-dashed border-purple-4 bg-purple-5/40 px-[20px] py-[24px] transition-colors hover:border-purple-1 hover:bg-purple-5"
+        data-dragging={dragging}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragging(true);
+        }}
+        onDragLeave={() => setDragging(false)}
+        onDrop={(e) => {
+          e.preventDefault();
+          setDragging(false);
+          accept(e.dataTransfer.files?.[0]);
+        }}
+        className="photo-drop flex min-h-[160px] w-full flex-col items-center justify-center gap-[10px] rounded-btn border border-dashed border-purple-4 bg-purple-5/40 px-[20px] py-[24px] transition-colors hover:border-purple-1 hover:bg-purple-5"
       >
         {preview ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -146,24 +180,30 @@ export function PhotoUpload({
           </span>
         )}
         <span className="text-small-14 font-semibold text-purple-3">
-          {fileName ?? "Click to upload a clear photo"}
+          {fileName ?? "Click to upload or drag a clear photo here"}
         </span>
         <span className="text-desc-12 text-neutral-600">
           JPG or PNG, up to 5 MB
         </span>
       </button>
+      {preview && (
+        /* Sibling rather than a child — a button cannot nest inside a button. */
+        <button
+          type="button"
+          onClick={clear}
+          aria-label="Remove photo"
+          className="absolute right-[12px] top-[12px] flex size-[30px] items-center justify-center rounded-full bg-white text-neutral-700 shadow-chip transition-colors hover:bg-red-2 hover:text-white"
+        >
+          <X size={16} weight="bold" />
+        </button>
+      )}
+      </div>
       <input
         ref={inputRef}
         type="file"
         accept="image/*"
         className="hidden"
-        onChange={(e) => {
-          const f = e.target.files?.[0];
-          if (f) {
-            setFileName(f.name);
-            setPreview(URL.createObjectURL(f));
-          }
-        }}
+        onChange={(e) => accept(e.target.files?.[0])}
       />
     </div>
   );

@@ -12,6 +12,7 @@ import { CITIES, PET_TYPES } from "@/data/content";
 export default function ReportLostPetPage() {
   return (
     <FormShell
+      className="form-modern"
       steps={["Pet Details", "Contact Info", "Published"]}
       title="Report a Lost Pet"
       banner={
@@ -41,7 +42,7 @@ export default function ReportLostPetPage() {
     >
       <FormSection title="Pet Information">
         <PhotoUpload label="Pet Photo" />
-        <div className="grid grid-cols-1 gap-[25px] sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
           <Field label="Name" placeholder="e.g. Luna" required />
           <SelectField label="Type" options={PET_TYPES} placeholder="Select type" />
           <Field label="Breed" placeholder="e.g. Chihuahua" required />
@@ -62,7 +63,7 @@ export default function ReportLostPetPage() {
       </FormSection>
 
       <FormSection title="Contact Information">
-        <div className="grid grid-cols-1 gap-[25px] sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
           <Field label="Primary Phone" placeholder="+966 5X XXX XXXX" type="tel" required />
           <Field label="Secondary Phone" placeholder="+966 5X XXX XXXX" type="tel" />
         </div>
