@@ -10,6 +10,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import {
   addDoc,
@@ -191,8 +192,19 @@ export default function SignUpPage() {
         // already typed into the form is kept; the rest stays empty for
         // them to fill from the account page.
         if (!snapshot.exists()) {
+          const chosenName = fullName.trim() || user.displayName || "";
+
+          // Google supplies a name, but honour anything they typed instead.
+          if (chosenName && chosenName !== user.displayName) {
+            try {
+              await updateProfile(user, { displayName: chosenName });
+            } catch (profileError) {
+              console.error("Failed to set display name:", profileError);
+            }
+          }
+
           await setDoc(profileRef, {
-            fullName: fullName.trim() || user.displayName || "",
+            fullName: chosenName,
             email: user.email || "",
             phone: toE164(phone.trim()) || phone.trim(),
             city: city.trim(),
@@ -348,11 +360,11 @@ export default function SignUpPage() {
     const petsToSave =
       hasPets === "yes"
         ? pets.map((pet) => ({
-            name: pet.name.trim(),
-            type: pet.type,
-            age: pet.age.trim(),
-            gender: pet.gender,
-          }))
+          name: pet.name.trim(),
+          type: pet.type,
+          age: pet.age.trim(),
+          gender: pet.gender,
+        }))
         : [];
 
     if (hasPets === "yes") {
@@ -404,6 +416,14 @@ export default function SignUpPage() {
       );
 
       const uid = userCredential.user.uid;
+
+      // Store the name on the auth record too, so the header and any other
+      // page can show it without an extra Firestore read.
+      try {
+        await updateProfile(userCredential.user, { displayName: name });
+      } catch (profileError) {
+        console.error("Failed to set display name:", profileError);
+      }
 
       try {
         await setDoc(doc(db, "users", uid), {

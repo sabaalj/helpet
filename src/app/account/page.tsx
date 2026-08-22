@@ -27,6 +27,7 @@ import {
   reauthenticateWithCredential,
   reauthenticateWithPopup,
   signOut,
+  updateProfile,
   type User as FirebaseUser,
 } from "firebase/auth";
 import {
@@ -890,6 +891,16 @@ export default function AccountPage() {
       );
 
       if (!mountedRef.current) return;
+
+      // Keep the auth record in step with Firestore, otherwise the header
+      // would keep showing the old name.
+      if (draft.fullName !== authUser.displayName) {
+        try {
+          await updateProfile(authUser, { displayName: draft.fullName });
+        } catch (nameError) {
+          console.error("Failed to update display name:", nameError);
+        }
+      }
 
       setUserData((current) => ({ ...current, ...draft }));
       setProfileMissing(false);
