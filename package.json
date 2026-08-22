@@ -16,6 +16,7 @@
     "@phosphor-icons/react": "^2.1.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "firebase": "^12.17.1",
     "framer-motion": "^13.0.0",
     "lucide-react": "^1.30.0",
     "next": "14.2.35",

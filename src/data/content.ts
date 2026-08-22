@@ -447,7 +447,7 @@ export const FAQS = [
 
 /* ── Account / profile demo data ──────────────────────────── */
 export const PROFILE = {
-  avatar: "/assets/avatar-user.png",
+  avatar: "/assets/avatar.png",
   name: "Fuad Al-Anbari",
   email: "fuad.3nbs@gmail.com",
   phone: "+966 50 123 4567",

@@ -9,6 +9,7 @@ import StatsBand from "@/components/sections/StatsBand";
 import Testimonials from "@/components/sections/Testimonials";
 import FAQ from "@/components/sections/FAQ";
 
+
 export default function HomePage() {
   return (
     <>
