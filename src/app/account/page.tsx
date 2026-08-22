@@ -17,13 +17,22 @@ import {
   Trash,
   User,
   UserCircle,
+  X,
 } from "@phosphor-icons/react";
 import {
   onAuthStateChanged,
   signOut,
   type User as FirebaseUser,
 } from "firebase/auth";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
 import {
   MY_LISTINGS,
@@ -49,6 +58,9 @@ const TABS: { id: Tab; label: string; icon: React.ReactNode }[] = [
   { id: "pets", label: "My Pets", icon: <PawPrint size={20} /> },
   { id: "listings", label: "My Listings", icon: <ClipboardText size={20} /> },
 ];
+
+const PET_TYPES = ["Cat", "Dog", "Bird", "Rabbit", "Other"] as const;
+const PET_GENDERS = ["Male", "Female", "Unknown"] as const;
 
 const STATUS_STYLE: Record<ListingStatus, string> = {
   Active: "bg-green-6 text-green-3",
@@ -122,13 +134,187 @@ function ListingRow({ item }: { item: MyListing }) {
 }
 
 /** One row of a pet card: label on the left, value on the right. */
-function PetDetail({ label, value }: { label: string; value: string }) {
-  return (
+function PetDetail({ label, value }: { label: string; value: string }) {  return (
     <div className="flex items-center justify-between gap-[10px] text-small-14">
       <span className="text-neutral-600">{label}</span>
       <span className="font-semibold text-neutral-800">
         {value || "Not provided"}
       </span>
+    </div>
+  );
+}
+
+type PetDraft = {
+  name: string;
+  type: string;
+  age: string;
+  gender: string;
+};
+
+/** Add / edit dialog for a single pet. */
+function PetFormModal({
+  mode,
+  initial,
+  saving,
+  error,
+  onSave,
+  onClose,
+}: {
+  mode: "add" | "edit";
+  initial: PetDraft;
+  saving: boolean;
+  error: string;
+  onSave: (pet: PetDraft) => void;
+  onClose: () => void;
+}) {
+  const [draft, setDraft] = useState<PetDraft>(initial);
+  const [localError, setLocalError] = useState("");
+
+  const update = (key: keyof PetDraft, value: string) =>
+    setDraft((current) => ({ ...current, [key]: value }));
+
+  const handleSave = () => {
+    const cleaned: PetDraft = {
+      name: draft.name.trim(),
+      type: draft.type,
+      age: draft.age.trim(),
+      gender: draft.gender,
+    };
+
+    if (!cleaned.name) return setLocalError("Enter a name.");
+    if (!cleaned.type) return setLocalError("Choose a type.");
+    if (!cleaned.age) return setLocalError("Enter an age.");
+    if (!cleaned.gender) return setLocalError("Choose a gender.");
+
+    setLocalError("");
+    onSave(cleaned);
+  };
+
+  const inputClass =
+    "h-[48px] w-full rounded-btn border border-neutral-300 bg-white px-[15px] text-content-18 text-neutral-800 outline-none transition-colors focus:border-purple-3 disabled:opacity-60";
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={mode === "add" ? "Add a pet" : "Edit pet"}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/40 p-[20px]"
+      onClick={onClose}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[90vh] w-full max-w-[440px] overflow-y-auto rounded-card bg-white p-[25px] shadow-card"
+      >
+        <div className="flex items-center justify-between">
+          <h3 className="text-title-20 font-bold text-purple-2">
+            {mode === "add" ? "Add a pet" : "Edit pet"}
+          </h3>
+
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="text-neutral-600 transition-colors hover:text-neutral-800"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <div className="mt-[20px] flex flex-col gap-[15px]">
+          <label className="flex flex-col gap-[6px]">
+            <span className="text-small-14 font-semibold text-neutral-800">
+              Pet Name
+            </span>
+            <input
+              type="text"
+              value={draft.name}
+              onChange={(e) => update("name", e.target.value)}
+              placeholder="Luna"
+              disabled={saving}
+              className={inputClass}
+            />
+          </label>
+
+          <label className="flex flex-col gap-[6px]">
+            <span className="text-small-14 font-semibold text-neutral-800">
+              Pet Type
+            </span>
+            <select
+              value={draft.type}
+              onChange={(e) => update("type", e.target.value)}
+              disabled={saving}
+              className={inputClass}
+            >
+              <option value="">Select a type</option>
+              {PET_TYPES.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="flex flex-col gap-[6px]">
+            <span className="text-small-14 font-semibold text-neutral-800">
+              Pet Age
+            </span>
+            <input
+              type="text"
+              value={draft.age}
+              onChange={(e) => update("age", e.target.value)}
+              placeholder="2 years"
+              disabled={saving}
+              className={inputClass}
+            />
+          </label>
+
+          <label className="flex flex-col gap-[6px]">
+            <span className="text-small-14 font-semibold text-neutral-800">
+              Pet Gender
+            </span>
+            <select
+              value={draft.gender}
+              onChange={(e) => update("gender", e.target.value)}
+              disabled={saving}
+              className={inputClass}
+            >
+              <option value="">Select a gender</option>
+              {PET_GENDERS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          {(localError || error) && (
+            <p role="alert" className="text-center text-sm text-red-600">
+              {localError || error}
+            </p>
+          )}
+
+          <div className="mt-[5px] flex gap-[10px]">
+            <button
+              type="button"
+              onClick={onClose}
+              disabled={saving}
+              className="h-[48px] flex-1 rounded-btn border border-purple-4 text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5 disabled:opacity-60"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              aria-busy={saving}
+              className="btn-primary h-[48px] flex-1 disabled:opacity-60"
+            >
+              {saving ? "Saving..." : "Save"}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -159,6 +345,18 @@ export default function AccountPage() {
 
   const [loggingOut, setLoggingOut] = useState(false);
   const [logoutError, setLogoutError] = useState("");
+
+  // Pet add / edit / delete.
+  const [petModal, setPetModal] = useState<
+    { mode: "add" } | { mode: "edit"; pet: PetRecord } | null
+  >(null);
+  const [petSaving, setPetSaving] = useState(false);
+  const [petSaveError, setPetSaveError] = useState("");
+  const [petPendingDelete, setPetPendingDelete] = useState<PetRecord | null>(
+    null
+  );
+  const [petDeleting, setPetDeleting] = useState(false);
+  const [petActionError, setPetActionError] = useState("");
 
   // Guards against setting state after the page unmounts (e.g. the user
   // navigates away while a Firestore read is still in flight).
@@ -267,7 +465,6 @@ export default function AccountPage() {
     },
     [loadProfile, loadPets]
   );
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(
       auth,
@@ -306,6 +503,96 @@ export default function AccountPage() {
 
     return () => unsubscribe();
   }, [router, loadAccount]);
+
+  const describeWriteError = (error: unknown, verb: string) => {
+    const code =
+      typeof error === "object" && error !== null && "code" in error
+        ? String((error as { code?: string }).code)
+        : "";
+
+    if (code === "permission-denied") {
+      return `You don't have permission to ${verb} pets. Check your Firestore security rules.`;
+    }
+
+    if (code === "unavailable" || code === "deadline-exceeded") {
+      return "Can't reach the database. Check your connection and try again.";
+    }
+
+    return `Couldn't ${verb} the pet. Please try again.`;
+  };
+
+  const handleSavePet = async (draft: PetDraft) => {
+    if (!authUser || petSaving || !petModal) return;
+
+    setPetSaving(true);
+    setPetSaveError("");
+    setPetActionError("");
+
+    try {
+      if (petModal.mode === "add") {
+        // Firestore generates the id, same as at signup.
+        const created = await addDoc(
+          collection(db, "users", authUser.uid, "pets"),
+          draft
+        );
+
+        if (!mountedRef.current) return;
+
+        setPets((current) => [...current, { id: created.id, ...draft }]);
+      } else {
+        const petId = petModal.pet.id;
+
+        await updateDoc(doc(db, "users", authUser.uid, "pets", petId), draft);
+
+        if (!mountedRef.current) return;
+
+        setPets((current) =>
+          current.map((pet) =>
+            pet.id === petId ? { ...pet, ...draft } : pet
+          )
+        );
+      }
+
+      setPetSaving(false);
+      setPetModal(null);
+    } catch (error) {
+      console.error("Failed to save pet:", error);
+
+      if (!mountedRef.current) return;
+
+      setPetSaving(false);
+      setPetSaveError(
+        describeWriteError(error, petModal.mode === "add" ? "add" : "update")
+      );
+    }
+  };
+
+  const handleDeletePet = async () => {
+    if (!authUser || !petPendingDelete || petDeleting) return;
+
+    const petId = petPendingDelete.id;
+
+    setPetDeleting(true);
+    setPetActionError("");
+
+    try {
+      await deleteDoc(doc(db, "users", authUser.uid, "pets", petId));
+
+      if (!mountedRef.current) return;
+
+      setPets((current) => current.filter((pet) => pet.id !== petId));
+      setPetDeleting(false);
+      setPetPendingDelete(null);
+    } catch (error) {
+      console.error("Failed to delete pet:", error);
+
+      if (!mountedRef.current) return;
+
+      setPetDeleting(false);
+      setPetPendingDelete(null);
+      setPetActionError(describeWriteError(error, "delete"));
+    }
+  };
 
   const handleLogout = async () => {
     if (loggingOut) return;
@@ -630,15 +917,27 @@ export default function AccountPage() {
                       </h2>
 
                       <div className="flex gap-[10px]">
-                        <button className="flex items-center gap-[6px] rounded-btn border border-purple-4 px-[15px] py-[8px] text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5">
+                        <button
+                          onClick={() => {
+                            setPetSaveError("");
+                            setPetModal({ mode: "add" });
+                          }}
+                          disabled={petsLoading}
+                          className="flex items-center gap-[6px] rounded-btn border border-purple-4 px-[15px] py-[8px] text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5 disabled:opacity-60"
+                        >
                           Add Another Pet <Plus size={15} weight="bold" />
-                        </button>
-
-                        <button className="flex items-center gap-[6px] rounded-btn border border-purple-4 px-[15px] py-[8px] text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5">
-                          Update Pet <Pencil size={15} />
                         </button>
                       </div>
                     </div>
+
+                    {petActionError && (
+                      <p
+                        role="alert"
+                        className="mt-[15px] text-small-14 text-red-2"
+                      >
+                        {petActionError}
+                      </p>
+                    )}
 
                     {petsLoading ? (
                       <p
@@ -676,6 +975,16 @@ export default function AccountPage() {
                         <p className="mt-[5px] text-small-14 text-neutral-600">
                           Pets you add at signup show up here.
                         </p>
+
+                        <button
+                          onClick={() => {
+                            setPetSaveError("");
+                            setPetModal({ mode: "add" });
+                          }}
+                          className="btn-primary mt-[15px] h-[44px] px-[24px] text-small-14"
+                        >
+                          Add your first pet
+                        </button>
                       </div>
                     ) : (
                       <div className="mt-[20px] grid grid-cols-1 gap-[20px] sm:grid-cols-2 xl:grid-cols-3">
@@ -709,6 +1018,28 @@ export default function AccountPage() {
                               <PetDetail label="Type" value={pet.type} />
                               <PetDetail label="Age" value={pet.age} />
                               <PetDetail label="Gender" value={pet.gender} />
+                            </div>
+
+                            <div className="flex gap-[10px] border-t border-purple-4/40 pt-[12px]">
+                              <button
+                                onClick={() => {
+                                  setPetSaveError("");
+                                  setPetModal({ mode: "edit", pet });
+                                }}
+                                className="flex flex-1 items-center justify-center gap-[6px] rounded-btn border border-purple-3 py-[6px] text-small-14 font-semibold text-purple-3 transition-colors hover:bg-purple-5"
+                              >
+                                <Pencil size={15} /> Edit
+                              </button>
+
+                              <button
+                                onClick={() => {
+                                  setPetActionError("");
+                                  setPetPendingDelete(pet);
+                                }}
+                                className="flex flex-1 items-center justify-center gap-[6px] rounded-btn border border-red-2 py-[6px] text-small-14 font-semibold text-red-2 transition-colors hover:bg-red-2/10"
+                              >
+                                <Trash size={15} /> Delete
+                              </button>
                             </div>
                           </div>
                         ))}
@@ -757,6 +1088,80 @@ export default function AccountPage() {
           </div>
         </div>
       </div>
+
+      {petModal && (
+        <PetFormModal
+          // Remounts on mode/pet change so the draft always starts fresh.
+          key={petModal.mode === "edit" ? petModal.pet.id : "add"}
+          mode={petModal.mode}
+          initial={
+            petModal.mode === "edit"
+              ? {
+                  name: petModal.pet.name,
+                  type: petModal.pet.type,
+                  age: petModal.pet.age,
+                  gender: petModal.pet.gender,
+                }
+              : { name: "", type: "", age: "", gender: "" }
+          }
+          saving={petSaving}
+          error={petSaveError}
+          onSave={handleSavePet}
+          onClose={() => {
+            if (!petSaving) {
+              setPetModal(null);
+              setPetSaveError("");
+            }
+          }}
+        />
+      )}
+
+      {petPendingDelete && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Confirm delete"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/40 p-[20px]"
+          onClick={() => !petDeleting && setPetPendingDelete(null)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-[400px] rounded-card bg-white p-[25px] shadow-card"
+          >
+            <h3 className="text-title-20 font-bold text-purple-2">
+              Delete this pet?
+            </h3>
+
+            <p className="mt-[10px] text-content-18 text-neutral-700">
+              <span className="font-bold">
+                {petPendingDelete.name || "This pet"}
+              </span>{" "}
+              will be removed from your account. This can&apos;t be undone.
+            </p>
+
+            <div className="mt-[20px] flex gap-[10px]">
+              <button
+                type="button"
+                onClick={() => setPetPendingDelete(null)}
+                disabled={petDeleting}
+                className="h-[48px] flex-1 rounded-btn border border-purple-4 text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5 disabled:opacity-60"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                onClick={handleDeletePet}
+                disabled={petDeleting}
+                aria-busy={petDeleting}
+                className="h-[48px] flex-1 rounded-btn bg-red-2 text-small-14 font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+              >
+                {petDeleting ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
