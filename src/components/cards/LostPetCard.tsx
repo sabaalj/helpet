@@ -6,9 +6,14 @@ import PetPhoto from "./PetPhoto";
 
 export default function LostPetCard({ pet }: { pet: LostPet }) {
   return (
-    <article className="flex h-full flex-col gap-[15px] rounded-card border border-purple-4/60 bg-white p-[15px] shadow-card transition-shadow hover:shadow-panel">
+    <article className="group flex h-full flex-col gap-[15px] rounded-card border border-purple-4/60 bg-white p-[15px] shadow-card transition-shadow hover:shadow-panel">
       <div className="relative">
-        <PetPhoto src={pet.photo} alt={`${pet.name} — lost ${pet.breed}`} />
+        <PetPhoto
+          src={pet.photo}
+          alt={`${pet.name} — lost ${pet.breed}`}
+          className="transition-colors duration-500 group-hover:bg-purple-5"
+          imgClassName="transition-transform duration-500 ease-out group-hover:scale-105"
+        />
         <span className="absolute left-[10px] top-[10px] rounded-btn bg-red-2 px-[10px] py-[4px] text-desc-12 font-bold uppercase tracking-[1px] text-white">
           Lost
         </span>

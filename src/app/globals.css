@@ -49,11 +49,44 @@ body {
   @apply static bg-transparent px-0 ml-[5px];
 }
 
+  /* Loading placeholder — lilac base with a light sweep crossing it. */
+  .skeleton {
+    @apply relative overflow-hidden bg-purple-5;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.75) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: skeleton-sweep 1.4s ease-in-out infinite;
+  }
+
   .btn-primary {
     @apply inline-flex h-[44px] items-center justify-center gap-[10px] rounded-btn bg-purple-3 px-[30px] text-content-18 font-bold text-white transition-all duration-300 hover:bg-purple-2 active:scale-[0.98];
   }
   .btn-outline {
     @apply inline-flex h-[44px] items-center justify-center gap-[10px] rounded-btn border border-purple-3 bg-white px-[30px] text-content-18 font-bold text-purple-3 transition-all duration-300 hover:bg-purple-5 active:scale-[0.98];
+  }
+}
+
+@keyframes skeleton-sweep {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Looping ambient motion is decorative — drop it when the OS asks. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .skeleton::after {
+    animation: none;
   }
 }
 
