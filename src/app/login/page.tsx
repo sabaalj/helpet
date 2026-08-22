@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { X } from "@phosphor-icons/react";
 import {
   browserLocalPersistence,
   browserSessionPersistence,
   GoogleAuthProvider,
   sendEmailVerification,
+  sendPasswordResetEmail,
   setPersistence,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -32,6 +34,160 @@ const AVATARS = [
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/** Password reset dialog. Firebase emails the link; we never see it. */
+function ResetPasswordModal({
+  initialEmail,
+  onClose,
+}: {
+  initialEmail: string;
+  onClose: () => void;
+}) {
+  const [email, setEmail] = useState(initialEmail);
+  const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
+  const [error, setError] = useState("");
+
+  const handleSend = async () => {
+    if (state === "sending") return;
+
+    const mail = email.trim();
+
+    if (!EMAIL_PATTERN.test(mail)) {
+      setError("Enter a valid email address, like you@example.com.");
+      return;
+    }
+
+    setState("sending");
+    setError("");
+
+    try {
+      await sendPasswordResetEmail(auth, mail);
+      setState("sent");
+    } catch (err: unknown) {
+      console.error(err);
+
+      const code =
+        typeof err === "object" && err !== null && "code" in err
+          ? String((err as { code?: string }).code)
+          : "";
+
+      // Note: auth/user-not-found is treated as success on purpose — saying
+      // "no account with that email" would let anyone probe for registered
+      // addresses.
+      if (code === "auth/user-not-found") {
+        setState("sent");
+        return;
+      }
+
+      setState("idle");
+      setError(
+        code === "auth/too-many-requests"
+          ? "Too many requests. Wait a few minutes and try again."
+          : code === "auth/network-request-failed"
+          ? "Network error. Check your connection and try again."
+          : "Couldn't send the reset email. Please try again."
+      );
+    }
+  };
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Reset password"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/40 p-[20px]"
+      onClick={onClose}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-[440px] rounded-card bg-white p-[25px] shadow-card"
+      >
+        <div className="flex items-center justify-between">
+          <h3 className="text-title-20 font-bold text-purple-2">
+            Reset your password
+          </h3>
+
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="text-neutral-600 transition-colors hover:text-neutral-800"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        {state === "sent" ? (
+          <div className="mt-[20px] flex flex-col gap-[20px]">
+            <p className="rounded-card bg-purple-5/60 px-[20px] py-[15px] text-content-18 text-neutral-800">
+              If an account exists for{" "}
+              <span className="font-bold">{email.trim()}</span>, a reset link is
+              on its way. Open it to choose a new password, then log in. Check
+              your spam folder if it hasn&apos;t arrived after a minute.
+            </p>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="btn-primary h-[48px] w-full"
+            >
+              Back to login
+            </button>
+          </div>
+        ) : (
+          <div className="mt-[20px] flex flex-col gap-[15px]">
+            <p className="text-small-14 text-neutral-700">
+              Enter the email you signed up with and we&apos;ll send you a link
+              to set a new password.
+            </p>
+
+            <label className="flex flex-col gap-[6px]">
+              <span className="text-small-14 font-semibold text-neutral-800">
+                Email
+              </span>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                disabled={state === "sending"}
+                autoComplete="email"
+                className="h-[48px] w-full rounded-btn border border-neutral-300 bg-white px-[15px] text-content-18 text-neutral-800 outline-none transition-colors focus:border-purple-3 disabled:opacity-60"
+              />
+            </label>
+
+            {error && (
+              <p role="alert" className="text-center text-sm text-red-600">
+                {error}
+              </p>
+            )}
+
+            <div className="mt-[5px] flex gap-[10px]">
+              <button
+                type="button"
+                onClick={onClose}
+                disabled={state === "sending"}
+                className="h-[48px] flex-1 rounded-btn border border-purple-4 text-small-14 font-semibold text-purple-1 transition-colors hover:bg-purple-5 disabled:opacity-60"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                onClick={handleSend}
+                disabled={state === "sending"}
+                aria-busy={state === "sending"}
+                className="btn-primary h-[48px] flex-1 disabled:opacity-60"
+              >
+                {state === "sending" ? "Sending..." : "Send reset link"}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function LoginPage() {
   const router = useRouter();
 
@@ -50,6 +206,7 @@ export default function LoginPage() {
   const [resendError, setResendError] = useState("");
 
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [resetOpen, setResetOpen] = useState(false);
 
   const handleGoogle = async () => {
     if (googleLoading || loading) return;
@@ -295,12 +452,13 @@ export default function LoginPage() {
               Remember me
             </label>
 
-            <Link
-              href="/login"
-              className="text-small-14 font-semibold text-purple-3 underline"
+            <button
+              type="button"
+              onClick={() => setResetOpen(true)}
+              className="text-small-14 font-semibold text-purple-3 underline transition-colors hover:text-purple-1"
             >
               Forgot Password?
-            </Link>
+            </button>
           </div>
 
           {error && (
@@ -410,6 +568,13 @@ export default function LoginPage() {
           ),
         }}
       />
+
+      {resetOpen && (
+        <ResetPasswordModal
+          initialEmail={email}
+          onClose={() => setResetOpen(false)}
+        />
+      )}
     </AuthLayout>
   );
 }
