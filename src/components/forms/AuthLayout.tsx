@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GoogleLogo, LinkedinLogo, PawPrint } from "@phosphor-icons/react";
+import { GoogleLogo, PawPrint } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -49,7 +49,16 @@ export function AuthPanel({
   );
 }
 
-export function SocialButtons({ verb = "Sign Up" }: { verb?: string }) {
+export function SocialButtons({
+  verb = "Sign Up",
+  onGoogle,
+  loading = false,
+}: {
+  verb?: string;
+  /** Omit to render the button disabled (no provider wired up). */
+  onGoogle?: () => void;
+  loading?: boolean;
+}) {
   return (
     <>
       <div className="flex items-center gap-[15px]">
@@ -59,17 +68,13 @@ export function SocialButtons({ verb = "Sign Up" }: { verb?: string }) {
       </div>
       <button
         type="button"
-        className="flex h-[52px] w-full items-center justify-center gap-[10px] rounded-btn border border-neutral-200 bg-white text-content-18 font-bold text-neutral-800 transition-colors hover:border-purple-3"
+        onClick={onGoogle}
+        disabled={loading || !onGoogle}
+        aria-busy={loading}
+        className="flex h-[52px] w-full items-center justify-center gap-[10px] rounded-btn border border-neutral-200 bg-white text-content-18 font-bold text-neutral-800 transition-colors hover:border-purple-3 disabled:opacity-60"
       >
         <GoogleLogo size={22} weight="bold" />
-        {verb} With Google
-      </button>
-      <button
-        type="button"
-        className="flex h-[52px] w-full items-center justify-center gap-[10px] rounded-btn border border-neutral-200 bg-white text-content-18 font-bold text-neutral-800 transition-colors hover:border-purple-3"
-      >
-        <LinkedinLogo size={22} weight="fill" />
-        {verb} With Linkedin
+        {loading ? "Connecting..." : `${verb} With Google`}
       </button>
     </>
   );

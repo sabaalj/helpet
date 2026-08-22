@@ -5,14 +5,17 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import {
   addDoc,
   collection,
   doc,
+  getDoc,
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
@@ -157,6 +160,103 @@ export default function SignUpPage() {
     // Make sure there's always one blank row waiting when they switch to Yes.
     if (value === "yes" && pets.length === 0) {
       setPets([emptyPet(nextPetId.current++)]);
+    }
+  };
+
+  const [googleLoading, setGoogleLoading] = useState(false);
+
+  const handleGoogle = async () => {
+    if (googleLoading || loading) return;
+
+    setError("");
+
+    if (!acceptedTerms) {
+      setError(
+        "Accept the Terms & Conditions and Privacy Policy to create your account."
+      );
+      return;
+    }
+
+    setGoogleLoading(true);
+
+    try {
+      const credential = await signInWithPopup(auth, new GoogleAuthProvider());
+      const user = credential.user;
+      const profileRef = doc(db, "users", user.uid);
+
+      try {
+        const snapshot = await getDoc(profileRef);
+
+        // Google gives us a name and a verified email. Anything the user
+        // already typed into the form is kept; the rest stays empty for
+        // them to fill from the account page.
+        if (!snapshot.exists()) {
+          await setDoc(profileRef, {
+            fullName: fullName.trim() || user.displayName || "",
+            email: user.email || "",
+            phone: toE164(phone.trim()) || phone.trim(),
+            city: city.trim(),
+            phoneVerified: false,
+            createdAt: serverTimestamp(),
+          });
+
+          // Carry over any pets they filled in before switching to Google.
+          if (hasPets === "yes") {
+            const petsToSave = pets
+              .map((pet) => ({
+                name: pet.name.trim(),
+                type: pet.type,
+                age: pet.age.trim(),
+                gender: pet.gender,
+              }))
+              .filter((pet) => pet.name && pet.type && pet.age && pet.gender);
+
+            if (petsToSave.length > 0) {
+              const petsRef = collection(db, "users", user.uid, "pets");
+
+              await Promise.all(
+                petsToSave.map((pet) => addDoc(petsRef, pet))
+              );
+            }
+          }
+        }
+      } catch (dbError) {
+        // Don't block sign-in over a profile write.
+        console.error("Failed to seed Google profile:", dbError);
+      }
+
+      router.push("/account");
+    } catch (err: unknown) {
+      console.error(err);
+      setGoogleLoading(false);
+
+      const code =
+        typeof err === "object" && err !== null && "code" in err
+          ? String((err as { code?: string }).code)
+          : "";
+
+      switch (code) {
+        case "auth/popup-closed-by-user":
+        case "auth/cancelled-popup-request":
+          // The user backed out on purpose — nothing to report.
+          break;
+        case "auth/popup-blocked":
+          setError("Your browser blocked the popup. Allow popups and retry.");
+          break;
+        case "auth/account-exists-with-different-credential":
+          setError(
+            "This email is already registered with a password. Log in with your password instead."
+          );
+          break;
+        case "auth/operation-not-allowed":
+          setError("Google sign-up isn't enabled for this project yet.");
+          break;
+        case "auth/network-request-failed":
+          setError("Network error. Check your connection and try again.");
+          break;
+        default:
+          setError("Couldn't sign up with Google. Please try again.");
+      }
     }
   };
 
@@ -688,7 +788,7 @@ export default function SignUpPage() {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || googleLoading}
             aria-busy={loading}
             className="btn-primary h-[52px] w-full disabled:opacity-60"
           >
@@ -705,7 +805,11 @@ export default function SignUpPage() {
             </Link>
           </p>
 
-          <SocialButtons verb="Sign Up" />
+          <SocialButtons
+            verb="Sign Up"
+            onGoogle={handleGoogle}
+            loading={googleLoading}
+          />
         </form>
       </AuthPanel>
 

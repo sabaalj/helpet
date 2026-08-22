@@ -6,11 +6,15 @@ import { useState } from "react";
 import {
   browserLocalPersistence,
   browserSessionPersistence,
+  GoogleAuthProvider,
   sendEmailVerification,
   setPersistence,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 import AuthLayout, {
   AuthAside,
@@ -44,6 +48,83 @@ export default function LoginPage() {
     "idle" | "sending" | "sent" | "error"
   >("idle");
   const [resendError, setResendError] = useState("");
+
+  const [googleLoading, setGoogleLoading] = useState(false);
+
+  const handleGoogle = async () => {
+    if (googleLoading || loading) return;
+
+    setError("");
+    setNeedsVerification(false);
+    setGoogleLoading(true);
+
+    try {
+      await setPersistence(
+        auth,
+        rememberMe ? browserLocalPersistence : browserSessionPersistence
+      );
+
+      const credential = await signInWithPopup(auth, new GoogleAuthProvider());
+      const user = credential.user;
+
+      // Google verifies the address itself, so these accounts skip the
+      // email-verification gate entirely.
+      const profileRef = doc(db, "users", user.uid);
+
+      try {
+        const snapshot = await getDoc(profileRef);
+
+        // First Google sign-in: seed a profile from what Google gives us.
+        // Phone and city stay empty — the user fills them from Edit.
+        if (!snapshot.exists()) {
+          await setDoc(profileRef, {
+            fullName: user.displayName || "",
+            email: user.email || "",
+            phone: "",
+            city: "",
+            createdAt: serverTimestamp(),
+          });
+        }
+      } catch (dbError) {
+        // Don't block the login over a profile write — the account page
+        // shows a "not saved yet" notice and offers Edit.
+        console.error("Failed to seed Google profile:", dbError);
+      }
+
+      router.push("/account");
+    } catch (err: unknown) {
+      console.error(err);
+      setGoogleLoading(false);
+
+      const code =
+        typeof err === "object" && err !== null && "code" in err
+          ? String((err as { code?: string }).code)
+          : "";
+
+      switch (code) {
+        case "auth/popup-closed-by-user":
+        case "auth/cancelled-popup-request":
+          // The user backed out on purpose — no error worth showing.
+          break;
+        case "auth/popup-blocked":
+          setError("Your browser blocked the popup. Allow popups and retry.");
+          break;
+        case "auth/account-exists-with-different-credential":
+          setError(
+            "This email is already registered with a password. Log in with your password instead."
+          );
+          break;
+        case "auth/operation-not-allowed":
+          setError("Google sign-in isn't enabled for this project yet.");
+          break;
+        case "auth/network-request-failed":
+          setError("Network error. Check your connection and try again.");
+          break;
+        default:
+          setError("Couldn't sign in with Google. Please try again.");
+      }
+    }
+  };
 
   const handleResend = async () => {
     if (resendState === "sending" || loading) return;
@@ -261,7 +342,7 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || googleLoading}
             aria-busy={loading}
             className="btn-primary h-[52px] w-full disabled:opacity-60"
           >
@@ -278,7 +359,11 @@ export default function LoginPage() {
             </Link>
           </p>
 
-          <SocialButtons verb="Sign In" />
+          <SocialButtons
+            verb="Sign In"
+            onGoogle={handleGoogle}
+            loading={googleLoading}
+          />
         </form>
       </AuthPanel>
 
